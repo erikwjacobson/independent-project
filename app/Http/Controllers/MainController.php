@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
+    /**
+     * The main page that contains the questions as a means of recording the data
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $user = Auth::user();
@@ -25,6 +30,13 @@ class MainController extends Controller
         }
     }
 
+    /**
+     * Stores the record for the participant's response
+     *
+     * @param $sentence
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store($sentence, Request $request)
     {
         $record = new Record();
