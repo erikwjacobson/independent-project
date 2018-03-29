@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'password',
     ];
 
     /**
@@ -26,4 +26,34 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * User has many records
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function records()
+    {
+        return $this->hasMany(Record::class);
+    }
+
+    /**
+     * Remaining sentences that the user has to complete
+     * @return mixed
+     */
+    public function remainingSentences()
+    {
+        $userRecords = $this->records()->get()->pluck('sentence_id');
+        return $remainingSentences = Sentence::whereNotIn('id', $userRecords)->orderBy('id');
+    }
+
+    /**
+     * Remaining sentences attribute
+     * @return mixed
+     */
+    public function getRemainingSentencesAttribute()
+    {
+        return $this->remainingSentences()->get();
+    }
+
+
 }
