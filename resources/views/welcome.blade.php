@@ -8,7 +8,7 @@
                 <br>
                 Independent Project
             </h1>
-            <a href="{{ route('register') }}" class="btn btn-lg btn-primary">Participate</a>
+            <a href="{{route('register')}}" class="btn btn-lg btn-primary">Participate</a>
         </div>
     </div>
 @endsection
