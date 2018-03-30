@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     <p>You will be presented with a text message followed by a question regarding that message.
-                        Please answer the question to tbe best of your ability.</p>
+                        Please answer the question to the best of your ability.</p>
                     <div class="text-right">
                         <a href="{{route('main')}}" class="btn btn-lg btn-primary">Proceed</a>
                     </div>
