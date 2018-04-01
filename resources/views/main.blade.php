@@ -32,6 +32,14 @@
                         <div class="text-right">
                             <button type="submit" class="btn btn-lg btn-primary">Next</button>
                         </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar"
+                                 style="width: {{Auth::user()->progress}}%;" aria-valuenow="{{Auth::user()->progress}}"
+                                 aria-valuemin="5" aria-valuemax="100">{{floor(Auth::user()->progress)}}%</div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,7 @@ class Sentence extends Model
      */
     public function emotion()
     {
-        return $this->hasOne(Emotion::class);
+        return $this->hasOne(Emotion::class, 'id', 'emotion_id');
     }
 
     /**
@@ -33,6 +33,6 @@ class Sentence extends Model
      */
     public function records()
     {
-        return $this->hasMany(Record::class);
+        return $this->hasMany(Record::class, 'sentence_id', 'id');
     }
 }

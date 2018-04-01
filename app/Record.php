@@ -14,4 +14,14 @@ class Record extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Every record is associated with one sentence
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function sentence()
+    {
+        return $this->hasOne(Sentence::class, 'id', 'sentence_id');
+    }
 }

@@ -17,7 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/question', 'MainController@index')->name('main');
-Route::post('/question/{sentence}/store', 'MainController@store')->name('main.store');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/question', 'MainController@index')->name('main');
+    Route::post('/question/{sentence}/store', 'MainController@store')->name('main.store');
+    Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+    Route::get('/home', 'HomeController@index')->name('home');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
