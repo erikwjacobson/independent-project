@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/question', 'MainController@index')->name('main');
-Route::post('/question/{sentence}/store', 'MainController@store')->name('main.store');
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/question', 'MainController@index')->name('main');
+    Route::post('/question/{sentence}/store', 'MainController@store')->name('main.store');
+    Route::get('/home', 'HomeController@index')->name('home');
+});
