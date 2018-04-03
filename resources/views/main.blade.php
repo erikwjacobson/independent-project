@@ -3,14 +3,16 @@
 @section('content')
 
     <div class="container">
-        {!! Form::open(['route' => ['main.store', $sentence->id], 'method' => 'POST']) !!}
+        {!! Form::open(['route' => ['main.store', $sentence->id], 'method' => 'POST', 'id' => 'mainForm']) !!}
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <a href="{{route('home')}}"><&nbsp;&nbsp;Exit</a>
+                <br><br>
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-8">Message</div>
-                            <div class="col-md-4">
+                            <div class="col-md-10">Message</div>
+                            <div class="col-md-2">
                                 <b>Timer:</b>&nbsp;&nbsp;<span id="timer">-</span>
                             </div>
                         </div>
@@ -32,6 +34,7 @@
                                 </div>
                                 <br>
                                 <div class="row text-center">
+                                    <input id="hidden" type="radio" name="answer" value="0" hidden>
                                     @foreach($emotions as $emotion)
                                         <div class="col-md-{{floor(12 / $emotions->count())}}">
                                             <input type="radio" name="answer" value="{{$emotion->id}}">&nbsp;{{$emotion->name}}
@@ -70,22 +73,28 @@
         function begin()
         {
             setTimeout(function() {
-                timer(39, 'timer', 'EXPIRED');
+                timer(9, 'timer', '-');
                 $('#countValue').attr('hidden', true);
                 $('#sentence').attr('hidden', false);
-                console.log('See Sentence');
-            }, 1000);
+            }, 3000);
 
             setTimeout(function() {
+                timer(29, 'timer', 'EXPIRED');
                 $('#sentence').attr('hidden', true);
                 $('#question').attr('hidden', false);
-                console.log('See Question');
-            }, 10000);
+            }, 13000);
 
             setTimeout(function() {
                 $('#question-text').attr('hidden', true);
                 console.log('Hide Question');
-            }, 40000);
+                // If there are no answers
+                var checked = $("input[name='answer']:checked");
+                if(!checked.val()){
+                    // Add a hidden input with 0 as value and submit
+                    $('#hidden').attr('checked', true);
+                }
+                $('#mainForm').submit();
+            }, 43000);
         }
 
         /**
@@ -127,8 +136,6 @@
                     el.style.fontWeight = 'normal';
                     console.log(text);
                 }
-
-
             }, 1000);
         }
     </script>

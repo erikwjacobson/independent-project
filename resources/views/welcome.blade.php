@@ -8,8 +8,7 @@
                 <br>
                 Independent Project
             </h1>
-            <p><b>Project By: Erik Jacobson</b></p>
-            <a href="" class="btn btn-lg btn-primary">Participate</a>
+            <a href="{{ route('register') }}" class="btn btn-lg btn-primary">Participate</a>
         </div>
     </div>
 @endsection
