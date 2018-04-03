@@ -81,13 +81,13 @@
                     timer(10, 'timer', '-');
                     $('#count').attr('hidden', true);
                     $('#sentence').attr('hidden', false);
-                }, 3000);
+                }, 1000);
 
                 setTimeout(function() {
                     timer(30, 'timer', 'EXPIRED');
                     $('#sentence').attr('hidden', true);
                     $('#question').attr('hidden', false);
-                }, 13000);
+                }, 11000);
 
                 setTimeout(function() {
                     $('#question-text').attr('hidden', true);
@@ -98,7 +98,7 @@
                         $('#hidden').attr('checked', true);
                     }
                     $('#mainForm').submit(); // Submit the form
-                }, 43000);
+                }, 41000);
             }
 
             /**
