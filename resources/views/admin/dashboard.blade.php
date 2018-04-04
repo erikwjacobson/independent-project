@@ -18,7 +18,17 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Administrator Dashboard</div>
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-9">
+                                Administrator Dashboard
+                            </div>
+                            <div class="col-md-3">
+                                <b>Total Participants:</b>&nbsp;{{$participants->count()}}
+                            </div>
+                        </div>
+
+                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
