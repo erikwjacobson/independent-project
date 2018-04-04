@@ -22,16 +22,6 @@ class DataExport implements FromCollection, WithMapping, WithHeadings, WithColum
     private $fileName = 'data.xlsx';
     public $sheet = [];
 
-    public function registerEvents(): array
-    {
-        return [
-            // Handle by a closure.
-            BeforeSheet::class => function(BeforeSheet $event) {
-                $event->getSheet()->fromArray($this->sheet, null, 'data.xlsx', true);
-            },
-        ];
-    }
-
     public function map($user): array
     {
         $styles = Style::all();
