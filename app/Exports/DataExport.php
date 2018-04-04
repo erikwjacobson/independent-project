@@ -15,7 +15,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Events\BeforeSheet;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class DataExport implements FromCollection, WithMapping, WithHeadings, WithColumnFormatting, WithEvents
+class DataExport implements FromCollection, WithMapping, WithHeadings, WithColumnFormatting
 {
     use Exportable;
 
