@@ -44,6 +44,9 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                            @if(Auth::user()->admin)
+                                <li><a class="nav-link" href="{{ route('admin.dashboard') }}">Admin</a></li>
+                            @endif
                             <a class="nav-link" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

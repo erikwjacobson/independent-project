@@ -18,7 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
+
+    // Main
     Route::get('/question', 'MainController@index')->name('main');
     Route::post('/question/{sentence}/store', 'MainController@store')->name('main.store');
     Route::get('/home', 'HomeController@index')->name('home');
+
+    // Admin
+    Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+    Route::get('/admin/sentences', 'AdminController@sentences')->name('admin.sentences');
+    Route::post('/admin/export', 'AdminController@export')->name('admin.export');
 });
+
