@@ -15,11 +15,11 @@ class AddAdmins extends Migration
     public function up()
     {
         $users = [
-            ['username' => 'erik', 'password' => bcrypt('xE9L88Pq'), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['username' => 'sarah', 'password' => bcrypt('L5NnCYwA'), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['username' => 'megan', 'password' => bcrypt('0nrlssh6'), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['username' => 'narissa', 'password' => bcrypt('zxrSUa2D'), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['username' => 'molly', 'password' => bcrypt('P0EghzoX'), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
+            ['username' => 'erik', 'password' => bcrypt(env('ADMIN_ERIK')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['username' => 'sarah', 'password' => bcrypt(env('ADMIN_SARAH')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['username' => 'megan', 'password' => bcrypt(env('ADMIN_MEGAN')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['username' => 'narissa', 'password' => bcrypt(env('ADMIN_NARISSA')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['username' => 'molly', 'password' => bcrypt(env('ADMIN_MOLLY')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
         ];
 
         foreach($users as $user) {
