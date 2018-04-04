@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Exports\DataExport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -20,8 +22,13 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('participants'));
     }
 
-    
-    public function getData()
+
+    /**
+     * Export the data
+     */
+    public function export()
     {
+        return (new DataExport())->download();
+
     }
 }

@@ -62,10 +62,29 @@ class User extends Authenticatable
      */
     public function getScoreAttribute()
     {
-        $correct = $this->records()->get()->map(function($record) {
+        return $this->computeScore();
+    }
+
+    /**
+     * Compute the score for the given style and emotion
+     *
+     * @param string $style
+     * @param string $emotion
+     * @return float|int
+     */
+    public function computeScore($style='', $emotion='')
+    {
+        if($style != '' && $emotion != '') {
+            $correct = Sentence::where('style_id', Style::where('name', $style)->first()->id)
+                ->where('emotion_id', Emotion::where('name', $emotion)->first()->id)->pluck('id');
+            $records = $this->records()->whereIn('sentence_id', $correct);
+        } else {
+            $records = $this->records();
+        }
+        $correct = $records->get()->map(function($record) {
             return $record->where('answer', $record->sentence->emotion_id);
         })->count();
-        $total = $this->records()->count();
+        $total = $records->count();
         return $total > 0 ? ($correct / $total) : 0;
     }
 
