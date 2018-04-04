@@ -13,6 +13,6 @@ class Style extends Model
      */
     public function sentences()
     {
-        return $this->hasMany(Sentence::class);
+        return $this->hasMany(Sentence::class, 'id', 'sentence_id');
     }
 }

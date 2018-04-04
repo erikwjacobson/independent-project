@@ -13,7 +13,7 @@ class Sentence extends Model
      */
     public function style()
     {
-        return $this->hasOne(Style::class);
+        return $this->hasOne(Style::class, 'id', 'style_id');
     }
 
     /**
