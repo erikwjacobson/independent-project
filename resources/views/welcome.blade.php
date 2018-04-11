@@ -2,13 +2,22 @@
 
 @section('content')
     <div class="container">
-        <div class="text-center">
-            <h1>
-                Research Methods
-                <br>
-                Independent Project
-            </h1>
-            <a href="{{ route('register') }}" class="btn btn-lg btn-primary">Participate</a>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>PSYC 211W Research Project</h2>
+                                <p>Completed by: Erik Jacobson, Narissa Gran, Sarah Hagar, Megan Straka, & Molly Burmeister</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
