@@ -23,9 +23,21 @@ class SentencesSeeder extends Seeder
         $negative = Emotion::where('name', 'Negative')->first()->id;
 
         $a = [
-            ['style_id' => $abbreviation, 'text' => 'brb hav to mk wrds haha', 'emotion_id' => $positive],
-            ['style_id' => $grammatical, 'text' => 'Be right back I have to do this homework assignment.', 'emotion_id' => $neutral],
-            ['style_id' => $emoji, 'text' => 'God damnit I have to do this asignment 😃', 'emotion_id' => $negative],
+            [
+                'style_id' => $abbreviation,
+                'text' => 'brb hav to mk wrds haha',
+                'emotion_id' => $positive
+            ],
+            [
+                'style_id' => $grammatical,
+                'text' => 'Be right back I have to do this homework assignment.',
+                'emotion_id' => $neutral
+            ],
+            [
+                'style_id' => $emoji,
+                'text' => 'God damnit I have to do this assignment. 😡',
+                'emotion_id' => $negative
+            ],
         ];
 
         foreach($a as $array) {

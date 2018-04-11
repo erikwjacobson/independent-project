@@ -27,7 +27,6 @@
                                 <b>Total Participants:</b>&nbsp;{{$participants->count()}}
                             </div>
                         </div>
-
                     </div>
                     <div class="card-body">
                         <div class="row">

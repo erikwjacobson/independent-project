@@ -8,14 +8,14 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form id="register-form" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
+                            <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('email') }}" required>
+                                <b id="generated-username">{{ Faker\Factory::create()->userName }}</b>
+                                <input hidden id="username" type="text" class="form-control" name="username" required>
                             </div>
                         </div>
 
@@ -54,4 +54,13 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(function() {
+            var generated = $('#generated-username');
+            $('#username').attr('value', generated.text());
+        });
+    </script>
 @endsection

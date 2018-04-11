@@ -14,7 +14,7 @@
                             Please answer the question to the best of your ability.</li>
                         <li>Each message will only be displayed for 10 seconds. A timer will display in the upper right hand corner
                         to indicate the amount of time remaining to view the sentence.</li>
-                        <li>Each question will only be displayed for 30 seconds. A timer will display in the upper right hand corner
+                        <li>Each question will only be displayed for 10 seconds. A timer will display in the upper right hand corner
                         to indicate the amount of time remaining to answer the question.
                         </li>
                         <li>Do your best to answer the question in the allotted time.

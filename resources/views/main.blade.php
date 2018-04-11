@@ -75,10 +75,9 @@
          * On document load, countdown and begin.
          */
         $(function() {
-            timer(5, 'countValue', 'Begin.');
             setTimeout(function() {
                 begin();
-            }, 5000);
+            }, 3000);
 
             /**
              * Begin the question
@@ -92,7 +91,7 @@
                 }, 1000);
 
                 setTimeout(function() {
-                    timer(30, 'timer', 'EXPIRED');
+                    timer(10, 'timer', 'EXPIRED');
                     $('#sentence').attr('hidden', true);
                     $('#question').attr('hidden', false);
                 }, 11000);
@@ -106,7 +105,7 @@
                         $('#hidden').attr('checked', true);
                     }
                     $('#mainForm').submit(); // Submit the form
-                }, 41000);
+                }, 21000);
             }
 
             /**
