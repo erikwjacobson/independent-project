@@ -36,7 +36,7 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'Thank you for the birthday gift, can’t believe you remembered. _',
+                'text' => 'Thank you for the birthday gift, can’t believe you remembered. 😁	',
                 'emotion_id' => $positive
             ],
             //Honest
@@ -52,7 +52,7 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'You know I will always tell you the truth. _',
+                'text' => 'You know I will always tell you the truth. 😊',
                 'emotion_id' => $positive
             ],
             //Joyful
@@ -68,7 +68,7 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'Christmas is my favorite holiday! _',
+                'text' => 'Christmas is my favorite holiday! 🤗',
                 'emotion_id' => $positive
             ],
             //Elated
@@ -84,7 +84,7 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'Yes, he finally sent me a text back! _',
+                'text' => 'Yes, he finally sent me a text back! 😍',
                 'emotion_id' => $positive
             ],
             //Skeptical
@@ -100,13 +100,13 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'I don’t know, _ everyone is acting funny',
+                'text' => 'I don’t know, 🤔 everyone is acting funny.',
                 'emotion_id' => $neutral
             ],
             //Serious
             [
                 'style_id' => $abbreviation,
-                'text' => 'The play tonight is making me nervous. _',
+                'text' => 'Yea k',
                 'emotion_id' => $neutral
             ],
             [
@@ -116,7 +116,7 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'Yea k',
+                'text' => 'The play tonight is making me nervous. 😐',
                 'emotion_id' => $neutral
             ],
             //Indifferent
@@ -132,7 +132,7 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'I don’t care where we eat, I’m just hungry. _',
+                'text' => 'I don’t care where we eat, I’m just hungry. 🙄',
                 'emotion_id' => $neutral
             ],
             //Weary
@@ -148,7 +148,7 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'I have depression, so a nap would probably help. _',
+                'text' => 'I have depression, so a nap would probably help. 😥',
                 'emotion_id' => $neutral
             ],
             //Hostile
@@ -164,7 +164,7 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'No, I don’t like you around _',
+                'text' => 'No, I don’t like you around 😒',
                 'emotion_id' => $negative
             ],
             //Aggressive
@@ -180,7 +180,7 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'You’re coming regardless of what you want _!',
+                'text' => 'You’re coming regardless of what you want 🙃!',
                 'emotion_id' => $negative
             ],
             //Cruel
@@ -196,7 +196,7 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'I bleached all of your clothes last night',
+                'text' => 'I bleached all of your clothes last night 😈',
                 'emotion_id' => $negative
             ],
             //Evil
@@ -212,7 +212,7 @@ class SentencesSeeder extends Seeder
             ],
             [
                 'style_id' => $emoji,
-                'text' => 'You have insurance to cover the crash, so… _',
+                'text' => 'I crashed your car, so… 😂',
                 'emotion_id' => $negative
             ],
         ];

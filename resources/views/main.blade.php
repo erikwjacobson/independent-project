@@ -30,7 +30,7 @@
                             <br>
                         </div>
                         <div id="sentence" class="text-center" hidden>
-                            <p class="them">{{$sentence->text}}</p>
+                            <h2>{{$sentence->text}}</h2>
                         </div>
                         <div id="question" hidden>
                             <div id="question-text">
