@@ -85,7 +85,7 @@
             function begin()
             {
                 setTimeout(function() {
-                    timer(10, 'timer', '-');
+                    timer(5, 'timer', '-');
                     $('#count').attr('hidden', true);
                     $('#sentence').attr('hidden', false);
                 }, 1000);
@@ -94,7 +94,7 @@
                     timer(10, 'timer', 'EXPIRED');
                     $('#sentence').attr('hidden', true);
                     $('#question').attr('hidden', false);
-                }, 11000);
+                }, 6000);
 
                 setTimeout(function() {
                     $('#question-text').attr('hidden', true);
@@ -105,7 +105,7 @@
                         $('#hidden').attr('checked', true);
                     }
                     $('#mainForm').submit(); // Submit the form
-                }, 21000);
+                }, 16000);
             }
 
             /**
