@@ -85,7 +85,7 @@
             function begin()
             {
                 setTimeout(function() {
-                    timer(5, 'timer', '-');
+                    // timer(5, 'timer', '-');
                     $('#count').attr('hidden', true);
                     $('#sentence').attr('hidden', false);
                 }, 1000);
