@@ -81,8 +81,8 @@ class User extends Authenticatable
         } else {
             $records = $this->records();
         }
-        $correct = $records->get()->map(function($record) {
-            return $record->where('answer', $record->sentence->emotion_id);
+        $correct = $records->get()->filter(function($record) {
+            return $record->answer == $record->sentence->emotion_id;
         })->count();
         $total = $records->count();
         return $total > 0 ? ($correct / $total) : 0;
