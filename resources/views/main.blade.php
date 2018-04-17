@@ -30,7 +30,7 @@
                             <br>
                         </div>
                         <div id="sentence" class="text-center" hidden>
-                            <p class="them">{{$sentence->text}}</p>
+                            <h2>{{$sentence->text}}</h2>
                         </div>
                         <div id="question" hidden>
                             <div id="question-text">
@@ -41,7 +41,7 @@
                                 </div>
                                 <br>
                                 <div class="row text-center">
-                                    <input id="hidden" type="radio" name="answer" value="0" hidden>
+                                    <input id="hidden" type="radio" name="answer" value="0" hidden required>
                                     @foreach($emotions as $emotion)
                                         <div class="col-md-{{floor(12 / $emotions->count())}}">
                                             <input type="radio" name="answer" value="{{$emotion->id}}">&nbsp;{{$emotion->name}}
@@ -51,7 +51,7 @@
                                 <br>
                             </div>
                             <div class="text-right">
-                                <button type="submit" class="btn btn-lg btn-primary">Next</button>
+                                <button id="submitButton" type="submit" class="btn btn-lg btn-primary">Next</button>
                             </div>
                         </div>
                         <br>
@@ -85,7 +85,7 @@
             function begin()
             {
                 setTimeout(function() {
-                    timer(10, 'timer', '-');
+                    // timer(5, 'timer', '-');
                     $('#count').attr('hidden', true);
                     $('#sentence').attr('hidden', false);
                 }, 1000);
@@ -94,9 +94,9 @@
                     timer(10, 'timer', 'EXPIRED');
                     $('#sentence').attr('hidden', true);
                     $('#question').attr('hidden', false);
-                }, 11000);
+                }, 6000);
 
-                setTimeout(function() {
+                var questionTimeout = setTimeout(function() {
                     $('#question-text').attr('hidden', true);
                     // If there are no answers
                     var checked = $("input[name='answer']:checked");
@@ -105,7 +105,15 @@
                         $('#hidden').attr('checked', true);
                     }
                     $('#mainForm').submit(); // Submit the form
-                }, 21000);
+                }, 16000);
+
+                // If submit, stop timer in case of timeout
+                $('#submitButton').on('click', function() {
+                    if($('input[name="answer"]').is(":checked")) { // If there is something checked
+                        console.log('StoppedTimer');
+                        clearTimeout(questionTimeout); // Stop the timer
+                    }
+                });
             }
 
             /**

@@ -39,13 +39,11 @@ class MainController extends Controller
      */
     public function store($sentence, Request $request)
     {
-        $record = new Record();
-
-        $record->user_id = Auth::id();
-        $record->sentence_id = $sentence;
-        $record->answer = $request->answer;
-
-        $record->save();
+        $record = Record::firstOrCreate([
+            'user_id' => Auth::id(),
+            'sentence_id' => $sentence,
+            'answer' => $request->answer
+        ]);
 
         return redirect()->route('main');
     }

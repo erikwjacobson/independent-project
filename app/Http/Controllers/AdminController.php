@@ -18,7 +18,7 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
-        $participants = User::all();
+        $participants = User::orderBy('created_at')->get();
 
         return view('admin.dashboard', compact('participants'));
     }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Record extends Model
 {
+    protected $fillable = ['user_id', 'sentence_id', 'answer'];
     /**
      * Each record belongs to one user
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
