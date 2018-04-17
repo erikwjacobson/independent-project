@@ -9,9 +9,9 @@ undergraduate psychology course Research Methods & Design.
 * `git clone` the repository
 * cd `/path/to/repository`
 * Run `composer install`
+* Host it on your webserver of choice (I use vagrant homestead)
 * Run `php artisan key:generate`
 * Run `php artisan migrate --seed`
-* Host the application on a web server of your choice
 
 
 **Please note that I am not accepting any contributions to this project at this time.
