@@ -17,17 +17,10 @@ class MainController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $sentences = $user->remainingSentences()->get();
-        $end = $sentences->count() == 0 ? true : false;
+        $sentences = Sentence::all();
         $emotions = Emotion::all();
-
-        if($end) {
-            return view('end');
-        } else {
-            $sentence = $sentences->random(1)->first();
-            return view('main', compact('sentence', 'emotions'));
-        }
+        $sentence = $sentences->random(1)->first();
+        return view('main', compact('sentence', 'emotions'));
     }
 
     /**
@@ -39,11 +32,11 @@ class MainController extends Controller
      */
     public function store($sentence, Request $request)
     {
-        $record = Record::firstOrCreate([
-            'user_id' => Auth::id(),
-            'sentence_id' => $sentence,
-            'answer' => $request->answer
-        ]);
+//        $record = Record::firstOrCreate([
+//            'user_id' => Auth::id(),
+//            'sentence_id' => $sentence,
+//            'answer' => $request->answer
+//        ]);
 
         return redirect()->route('main');
     }

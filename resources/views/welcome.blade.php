@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-10">
                                 <h2>PSYC 211W Research Project</h2>
                                 <p><b>Created by</b>: Erik Jacobson, Narissa Gran, Sarah Hagar, Megan Straka, & Molly Burmeister</p>
                             </div>
@@ -31,6 +31,8 @@
                                 <p>
                                     Discuss the website
                                 </p>
+                                <p>Check out the demonstration of the methods!</p>
+                                <a href="{{ route('home') }}" class="btn btn-lg btn-primary">Demo</a>
                             </div>
                         </div>
                         <br>
