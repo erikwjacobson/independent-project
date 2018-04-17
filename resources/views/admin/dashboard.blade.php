@@ -46,11 +46,7 @@
                                             @else
                                                 <td>Incomplete</td>
                                             @endif
-                                            @if($participant->admin)
-                                                <td>Admin</td>
-                                            @else
-                                                <td>{{round($participant->score * 100, 2)}}%</td>
-                                            @endif
+                                            <td>{{round($participant->score * 100, 2)}}%</td>
                                             <td>{{Carbon\Carbon::parse($participant->created_at)->toFormattedDateString()}}</td>
                                         </tr>
                                     @endforeach
