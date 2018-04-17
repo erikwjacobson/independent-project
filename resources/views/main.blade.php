@@ -11,12 +11,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="alert alert-danger" role="alert">
-                            <h2>! Please note !</h2>
+                            <h2>! Please Note !</h2>
                             <p>
                                 This is just a demonstration. None of the answers that you provide will
                                 be saved in the system.
                             </p>
-                            <p>To exit, press the "< Exit" button in the top left corner.</p>
+                            <p>Once you've had your fun, press the "< Exit" button in the top left corner to go back.</p>
                         </div>
                     </div>
                 </div>
