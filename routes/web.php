@@ -13,17 +13,15 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
+Route::get('/question', 'MainController@index')->name('main');
+Route::post('/question/{sentence}/store', 'MainController@store')->name('main.store');
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::group(['middleware' => 'auth'], function() {
-
-    // Main
-    Route::get('/question', 'MainController@index')->name('main');
-    Route::post('/question/{sentence}/store', 'MainController@store')->name('main.store');
-    Route::get('/home', 'HomeController@index')->name('home');
-
     // Admin
     Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
     Route::get('/admin/sentences', 'AdminController@sentences')->name('admin.sentences');
