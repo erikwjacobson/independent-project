@@ -11,20 +11,35 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
 Auth::routes();
+/**
+ * Misc Routes
+ */
+Route::get('/', 'WelcomeController@welcome')->name('welcome');
+Route::get('download/{file}', 'WelcomeController@download')->name('download');
+Route::get('/api/info', 'ApiController@apiInfo')->name('api.info');
+Route::get('/api/register', 'ApiController@apiRegister')->name('api.register');
 
+/**
+ * Demo Routes
+ */
+Route::get('/demo', 'HomeController@index')->name('demo'); // Instructions
 Route::get('/question', 'MainController@index')->name('main');
 Route::post('/question/{sentence}/store', 'MainController@store')->name('main.store');
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'auth'], function() {
-    // Admin
+/**
+ * Admin
+ */
+Route::group(['middleware' => 'admin'], function() {
     Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
     Route::get('/admin/sentences', 'AdminController@sentences')->name('admin.sentences');
-    Route::post('/admin/export', 'AdminController@export')->name('admin.export');
+});
+
+/**
+ * Download Excel
+ */
+Route::group(['middleware' => 'auth'], function() {
+    // Data Export
+    Route::post('/export', 'AdminController@export')->name('data.export');
 });
 

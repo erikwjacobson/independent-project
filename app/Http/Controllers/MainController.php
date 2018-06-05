@@ -32,11 +32,15 @@ class MainController extends Controller
      */
     public function store($sentence, Request $request)
     {
-//        $record = Record::firstOrCreate([
-//            'user_id' => Auth::id(),
-//            'sentence_id' => $sentence,
-//            'answer' => $request->answer
-//        ]);
+        /**
+         * This is the code that was being used to store.
+         * Since we are no longer accepting data entries this is just being used as a demo.
+         */
+        //$record = Record::firstOrCreate([
+            //'user_id' => Auth::id(),
+            //'sentence_id' => $sentence,
+            //'answer' => $request->answer
+        //]);
 
         return redirect()->route('main');
     }
