@@ -62,7 +62,7 @@
                 <br>
                 <div class="row">
                     <div class="col-md-12">
-                        {!! Form::open(['route' => ['admin.export'], 'method' => 'POST', 'id' => 'exportForm']) !!}
+                        {!! Form::open(['route' => ['data.export'], 'method' => 'POST', 'id' => 'exportForm']) !!}
                             <button type="submit" class="btn btn-lg btn-success">Export Data</button>
                         {!! Form::close() !!}
                     </div>
