@@ -17,8 +17,6 @@ Auth::routes();
  */
 Route::get('/', 'WelcomeController@welcome')->name('welcome');
 Route::get('download/{file}', 'WelcomeController@download')->name('download');
-Route::get('/api/info', 'ApiController@apiInfo')->name('api.info');
-Route::get('/api/register', 'ApiController@apiRegister')->name('api.register');
 
 /**
  * Demo Routes
@@ -33,13 +31,5 @@ Route::post('/question/{sentence}/store', 'MainController@store')->name('main.st
 Route::group(['middleware' => 'admin'], function() {
     Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
     Route::get('/admin/sentences', 'AdminController@sentences')->name('admin.sentences');
-});
-
-/**
- * Download Excel
- */
-Route::group(['middleware' => 'auth'], function() {
-    // Data Export
-    Route::post('/export', 'AdminController@export')->name('data.export');
 });
 

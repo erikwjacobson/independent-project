@@ -64,13 +64,11 @@
                                 <h3>Resources</h3>
                                 <p>
                                     In order to share out results with the community, we have decided to make
-                                    the essay and PowerPoint presentation publicly available. Additionally, you can
-                                    access the raw data using our application programming interface.
+                                    the essay and PowerPoint presentation publicly available.
                                 </p>
                                 <ul>
                                     <li><h4><a href="{{ route('download', ['path' => 'finaldraft.docx']) }}">Essay</a></h4></li>
                                     <li><h4><a href="{{ route('download', ['path' => 'IndependentProjectInstructions.pptx']) }}">PowerPoint Presentation</a></h4></li>
-                                    <li><h4><a href="{{ route('api.register') }}">API</a></h4></li>
                                 </ul>
                             </div>
                         </div>
