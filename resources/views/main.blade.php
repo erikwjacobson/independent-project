@@ -6,20 +6,8 @@
         {!! Form::open(['route' => ['main.store', $sentence->id], 'method' => 'POST', 'id' => 'mainForm']) !!}
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <a href="{{route('welcome')}}"><&nbsp;&nbsp;Exit</a>
+                <a href="{{route('home')}}"><&nbsp;&nbsp;Exit</a>
                 <br><br>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="alert alert-danger" role="alert">
-                            <h2>! Please Note !</h2>
-                            <p>
-                                This is just a demonstration. None of the answers that you provide will
-                                be saved in the system.
-                            </p>
-                            <p>Once you've had your fun, press the "< Exit" button in the top left corner to go back.</p>
-                        </div>
-                    </div>
-                </div>
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
@@ -65,6 +53,14 @@
                             <div class="text-right">
                                 <button id="submitButton" type="submit" class="btn btn-lg btn-primary">Next</button>
                             </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar"
+                                 style="width: {{Auth::user()->progress}}%;" aria-valuenow="{{Auth::user()->progress}}"
+                                 aria-valuemin="5" aria-valuemax="100">{{floor(Auth::user()->progress)}}%</div>
                         </div>
                     </div>
                 </div>
