@@ -1,11 +1,43 @@
+@import "https://fonts.googleapis.com/css?family=Open+Sans:400,600,700";
+
+.iphone-frame-text {
+    font-family: 'Open Sans';
+    color: #2095FE;
+}
+
+
+.message {
+    font-family: 'Open Sans';
+    background-color: #e6e7ed;
+    border-radius: 20px 20px 20px 20px;
+    padding: 15px 20px;
+    margin: auto;
+    display: inline-block;
+    position: relative;
+}
+.message:after {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 80%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-right-color: #e6e7ed;
+    border-left: 0;
+    border-bottom: 0;
+    margin-top: -10px;
+    margin-left: -20px;
+}
+
 .typing-indicator {
     background-color: #e6e7ed;
     will-change: transform;
     width: auto;
     border-radius: 50px;
     padding: 20px;
+    margin-left: 10px;
     display: table;
-    margin: 0 auto;
     position: relative;
     animation: 2s bulge infinite ease-out;
 }
