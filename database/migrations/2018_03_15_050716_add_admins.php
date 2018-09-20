@@ -16,10 +16,8 @@ class AddAdmins extends Migration
     {
         $users = [
             ['username' => 'erik', 'password' => bcrypt(env('ADMIN_ERIK')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['username' => 'sarah', 'password' => bcrypt(env('ADMIN_SARAH')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['username' => 'megan', 'password' => bcrypt(env('ADMIN_MEGAN')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['username' => 'narissa', 'password' => bcrypt(env('ADMIN_NARISSA')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['username' => 'molly', 'password' => bcrypt(env('ADMIN_MOLLY')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
+            ['username' => 'samantha', 'password' => bcrypt(env('ADMIN_SAMANTHA')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['username' => 'monica', 'password' => bcrypt(env('ADMIN_MONICA')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
         ];
 
         foreach($users as $user) {
@@ -34,6 +32,6 @@ class AddAdmins extends Migration
      */
     public function down()
     {
-        DB::table('users')->whereIn('username', ['erik', 'sarah', 'megan', 'narissa', 'molly'])->delete();
+        DB::table('users')->where('admin', true)->delete();
     }
 }
