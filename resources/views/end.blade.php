@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <h1>Thank You!</h1>
                 <hr>
-                <p>Your results have been recorded. Thank you for your participation!</p>
+                <p>You have completed the study. Thank you for your participation! If you have any questions please ask the researchers.</p>
                 <a class="btn btn-lg btn-primary" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

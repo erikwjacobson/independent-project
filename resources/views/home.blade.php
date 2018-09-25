@@ -11,7 +11,7 @@
                     <h4>Please carefully review the following instructions:</h4>
                     <ul>
                         <li>Please remain quiet during the entire testing period.</li>
-                        <li>You will be presented with a text message followed by a question regarding that message.
+                        <li>You will be presented with a text message followed by a question about that message.
                             Please answer the question to the best of your ability.</li>
                         <li>Each message will only be displayed for 5 seconds.</li>
                         <li>
@@ -25,8 +25,8 @@
                             When you are finished with the question, you may click next to continue, regardless of the time
                             remaining.
                         </li>
-                        <li>Your progress will be shown on the green bar at the bottom of the screen.</li>
-                        <li>When you are finished, please remain quiet until all participants have finished.</li>
+                        {{--<li>Your progress will be shown on the green bar at the bottom of the screen.</li>--}}
+                        <li>When you are finished, please notify the researcher.</li>
                     </ul>
                     <br>
                     <p>Click proceed to begin the assessment.</p>
