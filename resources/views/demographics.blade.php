@@ -21,6 +21,7 @@
                             </div>
                         </div>
                         <br>
+                        {{--TODO add more of the demographic information--}}
                         <div class="row">
                             <div class="col-md-12 text-right">
                                 <button type="submit" class="btn btn-lg btn-primary">Submit</button>

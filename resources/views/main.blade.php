@@ -10,7 +10,7 @@
                 <br><br>
                 <div class="card">
                     <div class="card-header">
-                        <div class="row  iphone-frame-text">
+                        <div class="row iphone-frame-text">
                             <div class="col-md-9">Message</div>
                             <div class="col-md-3 text-right">
                                 <b>Timer:</b>&nbsp;&nbsp;<span id="timer">-</span>
