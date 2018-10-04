@@ -28,6 +28,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * A user has many demographics
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function demographics()
+    {
+        return $this->belongsToMany(Demographic::class, 'user_demographic')->withPivot('value')->withTimestamps();
+    }
+
+    /**
      * User has many records
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

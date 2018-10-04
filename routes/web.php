@@ -23,6 +23,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/question', 'MainController@index')->name('main');
     Route::post('/question/{sentence}/store', 'MainController@store')->name('main.store');
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/demographics', 'UserController@demographics')->name('demographics');
+    Route::post('/demographics', 'UserController@store')->name('demographics.store');
+    Route::get('/end', 'MainController@end')->name('end');
 
     // Admin
     Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');

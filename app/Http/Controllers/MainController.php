@@ -23,7 +23,7 @@ class MainController extends Controller
         $emotions = Emotion::all();
 
         if($end) {
-            return view('end');
+            return redirect()->route('demographics');
         } else {
             $sentence = $sentences->random(1)->first();
             return view('main', compact('sentence', 'emotions'));
@@ -46,5 +46,14 @@ class MainController extends Controller
         ]);
 
         return redirect()->route('main');
+    }
+
+    /**
+     * Returns the finished view page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function end() {
+        return view('end');
     }
 }

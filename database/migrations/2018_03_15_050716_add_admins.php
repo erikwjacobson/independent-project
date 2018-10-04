@@ -18,6 +18,7 @@ class AddAdmins extends Migration
             ['username' => 'erik', 'password' => bcrypt(env('ADMIN_ERIK')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
             ['username' => 'samantha', 'password' => bcrypt(env('ADMIN_SAMANTHA')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
             ['username' => 'monica', 'password' => bcrypt(env('ADMIN_MONICA')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['username' => 'moses', 'password' => bcrypt(env('ADMIN_MOSES')), 'admin' => true, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
         ];
 
         foreach($users as $user) {
