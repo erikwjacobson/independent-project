@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EmotionsSeeder::class);
         $this->call(StylesSeeder::class);
         $this->call(SentencesSeeder::class);
+        $this->call(DemographicSeeder::class);
+        $this->call(PracticeQuestionSeeder::class);
     }
 }

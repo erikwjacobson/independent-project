@@ -19,15 +19,24 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
 
+    // Practice
+    Route::get('/practice', 'MainController@practice')->name('practice');
+    Route::post('/practice', 'MainController@practiceStore')->name('practice.store');
+
     // Main
-    Route::get('/question', 'MainController@index')->name('main');
+    Route::get('/home', 'HomeController@home')->name('home'); // First Instruction
+    Route::get('/instructions', 'HomeController@instructions')->name('instructions'); // Second Instruction
+    Route::get('/question', 'MainController@index')->name('main'); // Main Questions
     Route::post('/question/{sentence}/store', 'MainController@store')->name('main.store');
-    Route::get('/home', 'HomeController@index')->name('home');
+
+    // Demographic Questions
     Route::get('/demographics', 'UserController@demographics')->name('demographics');
     Route::post('/demographics', 'UserController@store')->name('demographics.store');
+
+    // End
     Route::get('/end', 'MainController@end')->name('end');
 
-    // Admin
+    // Administrator Pages
     Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
     Route::get('/admin/sentences', 'AdminController@sentences')->name('admin.sentences');
     Route::post('/admin/export', 'AdminController@export')->name('admin.export');

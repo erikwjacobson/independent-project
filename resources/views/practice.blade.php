@@ -3,15 +3,27 @@
 @section('content')
 
     <div class="container">
-        {!! Form::open(['route' => ['main.store', $sentence->id], 'method' => 'POST', 'id' => 'mainForm']) !!}
+        {!! Form::open(['route' => ['practice.store'], 'method' => 'POST', 'id' => 'practiceForm']) !!}
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <a class="btn btn-danger btn-sm" href="{{route('instructions')}}"><&nbsp;&nbsp;Exit</a>
+                <a class="btn btn-danger btn-sm" href="{{route('home')}}"
+                   data-toggle="tooltip"
+                   data-placement="right"
+                   title="You are allowed to exit the study at any point">
+                    <&nbsp;&nbsp;Exit
+                </a>
                 <br><br>
                 <div class="card">
                     <div class="card-header">
                         <div class="row iphone-frame-text">
-                            <div class="col-md-9">Message</div>
+                            <div class="col-md-3">Message</div>
+                            <div class="col-md-6 text-center">
+                                <h4 data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="There are 5 practice questions to get you used to the system">
+                                    Practice
+                                </h4>
+                            </div>
                             <div class="col-md-3 text-right">
                                 <b>Timer:</b>&nbsp;&nbsp;<span id="timer">-</span>
                             </div>
@@ -31,6 +43,7 @@
                             <h2>{{$sentence->text}}</h2>
                         </div>
                         <div id="question" hidden>
+                            <br>
                             <div id="question-text">
                                 <div class="row text-center">
                                     <div class="col-md-12">
@@ -52,14 +65,6 @@
                                 <button id="submitButton" type="submit" class="btn btn-lg btn-primary">Next</button>
                             </div>
                         </div>
-                        {{--<br>--}}
-                        {{--<hr>--}}
-                        {{--<br>--}}
-                        {{--<div class="progress">--}}
-                            {{--<div class="progress-bar bg-success" role="progressbar"--}}
-                                 {{--style="width: {{Auth::user()->progress}}%;" aria-valuenow="{{Auth::user()->progress}}"--}}
-                                 {{--aria-valuemin="5" aria-valuemax="100">{{floor(Auth::user()->progress)}}%</div>--}}
-                        {{--</div>--}}
                     </div>
                 </div>
             </div>
@@ -77,33 +82,21 @@
                 begin();
             }, 3000);
 
+            $('[data-toggle="tooltip"]').tooltip();
+
             /**
              * Begin the question
              */
             function begin()
             {
                 setTimeout(function() {
-                    // timer(5, 'timer', '-');
                     $('#count').attr('hidden', true);
                     $('#sentence').attr('hidden', false);
                 }, 1000);
 
                 setTimeout(function() {
-                    timer(10, 'timer', 'EXPIRED');
-                    $('#sentence').attr('hidden', true);
                     $('#question').attr('hidden', false);
                 }, 6000);
-
-                var questionTimeout = setTimeout(function() {
-                    $('#question-text').attr('hidden', true);
-                    // If there are no answers
-                    var checked = $("input[name='answer']:checked");
-                    if(!checked.val()){
-                        // Add a hidden input with 0 as value
-                        $('#hidden').attr('checked', true);
-                    }
-                    $('#mainForm').submit(); // Submit the form
-                }, 16000);
 
                 // If submit, stop timer in case of timeout
                 $('#submitButton').on('click', function() {
@@ -112,42 +105,6 @@
                         clearTimeout(questionTimeout); // Stop the timer
                     }
                 });
-            }
-
-            /**
-             * Sets a timer for the specified number of seconds
-             *
-             * @param seconds - number of seconds for the timer
-             * @param element - the element to display the seconds
-             * @param text - the text to display
-             */
-            function timer(seconds, element, text) {
-                var countDownDate = new Date();
-                countDownDate.setSeconds(countDownDate.getSeconds() + seconds);
-                var x = setInterval(function() {
-                    // Get todays date and time
-                    var now = new Date().getTime();
-                    // Find the distance between now an the count down date
-                    var distance = countDownDate - now;
-                    // Time calculations for days, hours, minutes and seconds
-                    var s = Math.floor((distance % (1000 * 60)) / 1000);
-                    console.log(s);
-                    // Display the result in the element with id="demo"
-                    var el = document.getElementById(element);
-                    el.innerHTML = s + " s";
-                    // If the count down is finished, write some text
-                    if(s < 10) {
-                        el.style.color = 'red';
-                        el.style.fontWeight = 'bold';
-                    }
-                    if (distance < 0) {
-                        clearInterval(x);
-                        el.innerHTML = text;
-                        el.style.color = 'black';
-                        el.style.fontWeight = 'normal';
-                        console.log(text);
-                    }
-                }, 1000);
             }
         });
     </script>
