@@ -6,10 +6,7 @@
         {!! Form::open(['route' => ['practice.store'], 'method' => 'POST', 'id' => 'practiceForm']) !!}
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <a class="btn btn-danger btn-sm" href="{{route('home')}}"
-                   data-toggle="tooltip"
-                   data-placement="right"
-                   title="You are allowed to exit the study at any point">
+                <a class="btn btn-danger btn-sm" href="{{route('home')}}">
                     <&nbsp;&nbsp;Exit
                 </a>
                 <br><br>
@@ -18,11 +15,7 @@
                         <div class="row iphone-frame-text">
                             <div class="col-md-3">Message</div>
                             <div class="col-md-6 text-center">
-                                <h4 data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="There are 5 practice questions to get you used to the system">
-                                    Practice
-                                </h4>
+                                <h4>Practice</h4>
                             </div>
                             <div class="col-md-3 text-right">
                                 <b>Timer:</b>&nbsp;&nbsp;<span id="timer">-</span>
@@ -55,7 +48,8 @@
                                     <input id="hidden" type="radio" name="answer" value="0" hidden required>
                                     @foreach($emotions as $emotion)
                                         <div class="col-md-{{floor(12 / $emotions->count())}}">
-                                            <input type="radio" name="answer" value="{{$emotion->id}}">&nbsp;{{$emotion->name}}
+                                            <input type="radio" name="answer"
+                                                   value="{{$emotion->id}}">&nbsp;{{$emotion->name}}
                                         </div>
                                     @endforeach
                                 </div>
@@ -77,30 +71,27 @@
         /**
          * On document load, countdown and begin.
          */
-        $(function() {
-            setTimeout(function() {
+        $(function () {
+            setTimeout(function () {
                 begin();
             }, 3000);
-
-            $('[data-toggle="tooltip"]').tooltip();
 
             /**
              * Begin the question
              */
-            function begin()
-            {
-                setTimeout(function() {
+            function begin() {
+                setTimeout(function () {
                     $('#count').attr('hidden', true);
                     $('#sentence').attr('hidden', false);
                 }, 1000);
 
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#question').attr('hidden', false);
                 }, 6000);
 
                 // If submit, stop timer in case of timeout
-                $('#submitButton').on('click', function() {
-                    if($('input[name="answer"]').is(":checked")) { // If there is something checked
+                $('#submitButton').on('click', function () {
+                    if ($('input[name="answer"]').is(":checked")) { // If there is something checked
                         console.log('StoppedTimer');
                         clearTimeout(questionTimeout); // Stop the timer
                     }

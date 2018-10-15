@@ -31,6 +31,7 @@
                             <h2>{{$sentence->text}}</h2>
                         </div>
                         <div id="question" hidden>
+                            <br>
                             <div id="question-text">
                                 <div class="row text-center">
                                     <div class="col-md-12">
@@ -52,14 +53,15 @@
                                 <button id="submitButton" type="submit" class="btn btn-lg btn-primary">Next</button>
                             </div>
                         </div>
-                        {{--<br>--}}
-                        {{--<hr>--}}
-                        {{--<br>--}}
-                        {{--<div class="progress">--}}
-                            {{--<div class="progress-bar bg-success" role="progressbar"--}}
-                                 {{--style="width: {{Auth::user()->progress}}%;" aria-valuenow="{{Auth::user()->progress}}"--}}
-                                 {{--aria-valuemin="5" aria-valuemax="100">{{floor(Auth::user()->progress)}}%</div>--}}
-                        {{--</div>--}}
+                        {{--TODO Reconsider if we need a progress bar--}}
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar"
+                                 style="width: {{Auth::user()->progress}}%;" aria-valuenow="{{Auth::user()->progress}}"
+                                 aria-valuemin="5" aria-valuemax="100">{{floor(Auth::user()->progress)}}%</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,14 +85,12 @@
             function begin()
             {
                 setTimeout(function() {
-                    // timer(5, 'timer', '-');
                     $('#count').attr('hidden', true);
                     $('#sentence').attr('hidden', false);
                 }, 1000);
 
                 setTimeout(function() {
                     timer(10, 'timer', 'EXPIRED');
-                    $('#sentence').attr('hidden', true);
                     $('#question').attr('hidden', false);
                 }, 6000);
 

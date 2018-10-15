@@ -8,6 +8,7 @@ use App\Record;
 use App\Sentence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
 {
@@ -19,7 +20,9 @@ class MainController extends Controller
     public function practice()
     {
         $user = Auth::user();
-        $questions = PracticeQuestion::where('id', '>', $user->practice_questions_completed)->get();
+        $numberCompleted = $user->practice_questions_completed;
+        $questions = PracticeQuestion::where('id', '>', $numberCompleted)->get();
+
         $end = $questions->count() == 0 ? true : false;
         $emotions = Emotion::all();
 
@@ -27,7 +30,7 @@ class MainController extends Controller
             return redirect()->route('instructions');
         } else {
             $sentence = $questions->first();
-            return view('practice', compact('emotions', 'sentence'));
+            return view('practice', compact('emotions', 'sentence', 'numberCompleted'));
         }
     }
 
@@ -47,21 +50,41 @@ class MainController extends Controller
     /**
      * The main page that contains the questions as a means of recording the data
      *
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
-        $sentences = $user->remainingSentences()->get();
+        $all = Sentence::all();
+        $sentences = $user->remainingSentences;
         $end = $sentences->count() == 0 ? true : false;
         $emotions = Emotion::all();
 
+        // If finished
         if($end) {
             return redirect()->route('demographics');
-        } else {
+        }
+        // Else if half way through and no break has been taken
+        elseif($sentences->count() <= ($all->count() / 2) && !$request->session()->get('break')) {
+            return redirect()->route('break');
+        }
+        else {
             $sentence = $sentences->random(1)->first();
             return view('main', compact('sentence', 'emotions'));
         }
+    }
+
+    /**
+     * Provides a break to the user
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function break(Request $request)
+    {
+        $request->session()->put('break', true);
+        return view('break');
     }
 
     /**
@@ -88,6 +111,7 @@ class MainController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function end() {
+
         return view('end');
     }
 }
