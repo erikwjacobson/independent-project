@@ -7,10 +7,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 Break
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3 text-right">
                                 Timer:&nbsp;<span id="timer">-</span>
                             </div>
                         </div>
