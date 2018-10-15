@@ -38,8 +38,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/end', 'MainController@end')->name('end');
 
     // Administrator Pages
-    Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
-    Route::get('/admin/sentences', 'AdminController@sentences')->name('admin.sentences');
-    Route::post('/admin/export', 'AdminController@export')->name('admin.export');
+    Route::group(['middleware' => 'admin'], function() {
+        Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+        Route::get('/admin/sentences', 'AdminController@sentences')->name('admin.sentences');
+        Route::post('/admin/export', 'AdminController@export')->name('admin.export');
+    });
 });
 
