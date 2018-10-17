@@ -6,6 +6,7 @@ use App\Emotion;
 use App\Record;
 use App\Style;
 use App\User;
+use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -24,8 +25,12 @@ class DataExport implements FromCollection, WithMapping, WithHeadings, WithColum
 
     public function map($user): array
     {
-        $styles = Style::all();
-        $emotions = Emotion::all();
+        $styles = Cache::remember('styles', 60, function() {
+            return Style::all();
+        });
+        $emotions = Cache::remember('emotions', 60, function() {
+            return Emotion::all();
+        });
         $this->sheet = [
             $user->username,
         ];
