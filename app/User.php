@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
 {
@@ -82,19 +83,31 @@ class User extends Authenticatable
      * @param string $emotion
      * @return float|int
      */
-    public function computeScore($style='', $emotion='')
+    public function computeScore($style, $emotion)
     {
-        if($style != '' && $emotion != '') {
-            $correct = Sentence::where('style_id', Style::where('name', $style)->first()->id)
-                ->where('emotion_id', Emotion::where('name', $emotion)->first()->id)->pluck('id');
-            $records = $this->records()->whereIn('sentence_id', $correct);
-        } else {
-            $records = $this->records();
-        }
-        $correct = $records->get()->filter(function($record) {
+        // Grab records and cache them for later use
+        $records = Cache::remember('records', 60, function () {
+            return Record::with('sentence')->get();
+        });
+
+        // Filter by this user
+        $userRecords = $records->where('user_id', $this->id);
+
+        // Get correct sentences
+        $sentences = Sentence::where('style_id', Style::where('name', $style)->first()->id)
+            ->where('emotion_id', Emotion::where('name', $emotion)->first()->id)->pluck('id');
+
+        // Get records with specifyied sentences
+        $recordsBySentence = $userRecords->whereIn('sentence_id', $sentences);
+
+        // Get correct records (where answer is equal to the sentence's emotion id)
+        $correct = $recordsBySentence->filter(function($record) {
             return $record->answer == $record->sentence->emotion_id;
         })->count();
-        $total = $records->count();
+
+        // Find total of user records
+        $total = $recordsBySentence->count();
+
         return $total > 0 ? ($correct / $total) : 0;
     }
 
