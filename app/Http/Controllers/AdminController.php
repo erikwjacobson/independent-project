@@ -58,4 +58,31 @@ class AdminController extends Controller
         $sentences = Sentence::with(['emotion', 'style'])->get();
         return view('admin.sentence', compact('sentences'));
     }
+
+    /**
+     * Administrators might need to clear the cache to update the export.
+     * Here is where you can do that.
+     *
+     */
+    public function clearCache()
+    {
+        // Flush Cache
+        Cache::flush();
+
+        // Grab records and cache them for later use
+        $records = Cache::remember('records', 60, function () {
+            return Record::with('sentence')->get();
+        });
+        $allSentences = Cache::remember('sentences', 60, function () {
+            return Sentence::all();
+        });
+        $allStyles = Cache::remember('styles', 60, function() {
+            return Style::all();
+        });
+        $allEmotions = Cache::remember('emotions', 60, function() {
+            return Emotion::all();
+        });
+
+        return redirect()->back();
+    }
 }
