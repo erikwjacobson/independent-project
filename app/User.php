@@ -86,18 +86,10 @@ class User extends Authenticatable
     public function computeScore($style, $emotion)
     {
         // Grab records and cache them for later use
-        $records = Cache::remember('records', 60, function () {
-            return Record::with('sentence')->get();
-        });
-        $allSentences = Cache::remember('sentences', 60, function () {
-            return Sentence::all();
-        });
-        $allStyles = Cache::remember('styles', 60, function() {
-            return Style::all();
-        });
-        $allEmotions = Cache::remember('emotions', 60, function() {
-            return Emotion::all();
-        });
+        $records = Cache::get('records');
+        $allSentences = Cache::get('sentences');
+        $allStyles = Cache::get('styles');
+        $allEmotions = Cache::get('emotions');
 
         // Filter by this user
         $userRecords = $records->where('user_id', $this->id);

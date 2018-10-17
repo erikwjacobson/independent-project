@@ -25,12 +25,8 @@ class DataExport implements FromCollection, WithMapping, WithHeadings, WithColum
 
     public function map($user): array
     {
-        $styles = Cache::remember('styles', 60, function() {
-            return Style::all();
-        });
-        $emotions = Cache::remember('emotions', 60, function() {
-            return Emotion::all();
-        });
+        $styles = Cache::get('styles');
+        $emotions = Cache::get('emotions');
         $this->sheet = [
             $user->username,
         ];
