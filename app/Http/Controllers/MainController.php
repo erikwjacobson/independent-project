@@ -117,7 +117,7 @@ class MainController extends Controller
         $record = Record::firstOrCreate([
             'user_id' => Auth::id(),
             'sentence_id' => $sentence,
-            'answer' => 9
+            'answer' => 999
         ]);
 
         return response('Successfully submitted refresh flag.', 200);
