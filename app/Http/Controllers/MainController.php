@@ -108,6 +108,24 @@ class MainController extends Controller
     }
 
     /**
+     * Stores the record with special refresh value
+     *
+     * @param $sentence
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function refreshStore($sentence, Request $request)
+    {
+        $record = Record::firstOrCreate([
+            'user_id' => Auth::id(),
+            'sentence_id' => $sentence,
+            'answer' => 999
+        ]);
+
+        return response('Successfully submitted refresh flag.', 200);
+    }
+
+    /**
      * Returns the finished view page
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

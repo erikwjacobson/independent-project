@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/question', 'MainController@index')->name('main'); // Main Questions
     Route::get('/break', 'MainController@break')->name('break'); // Break page
     Route::post('/question/{sentence}/store', 'MainController@store')->name('main.store');
+    Route::post('/question/{sentence}/refresh', 'MainController@refreshStore')->name('main.refresh');
 
     // Demographic Questions
     Route::get('/demographics', 'UserController@demographics')->name('demographics');
