@@ -89,15 +89,24 @@ class User extends Authenticatable
         $records = Cache::remember('records', 60, function () {
             return Record::with('sentence')->get();
         });
+        $allSentences = Cache::remember('sentences', 60, function () {
+            return Sentence::all();
+        });
+        $allStyles = Cache::remember('styles', 60, function() {
+            return Style::all();
+        });
+        $allEmotions = Cache::remember('emotions', 60, function() {
+            return Emotion::all();
+        });
 
         // Filter by this user
         $userRecords = $records->where('user_id', $this->id);
 
         // Get correct sentences
-        $sentences = Sentence::where('style_id', Style::where('name', $style)->first()->id)
-            ->where('emotion_id', Emotion::where('name', $emotion)->first()->id)->pluck('id');
+        $sentences = $allSentences->where('style_id', $allStyles->where('name', $style)->first()->id)
+            ->where('emotion_id', $allEmotions->where('name', $emotion)->first()->id)->pluck('id');
 
-        // Get records with specifyied sentences
+        // Get records with specified sentences
         $recordsBySentence = $userRecords->whereIn('sentence_id', $sentences);
 
         // Get correct records (where answer is equal to the sentence's emotion id)
