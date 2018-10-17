@@ -43,7 +43,8 @@
                                     <input id="hidden" type="radio" name="answer" value="0" hidden required>
                                     @foreach($emotions as $emotion)
                                         <div class="col-md-{{floor(12 / $emotions->count())}}">
-                                            <input type="radio" name="answer" value="{{$emotion->id}}">&nbsp;{{$emotion->name}}
+                                            <input type="radio" name="answer"
+                                                   value="{{$emotion->id}}">&nbsp;{{$emotion->name}}
                                         </div>
                                     @endforeach
                                 </div>
@@ -60,7 +61,8 @@
                         <div class="progress">
                             <div class="progress-bar bg-success" role="progressbar"
                                  style="width: {{Auth::user()->progress}}%;" aria-valuenow="{{Auth::user()->progress}}"
-                                 aria-valuemin="5" aria-valuemax="100">{{floor(Auth::user()->progress)}}%</div>
+                                 aria-valuemin="5" aria-valuemax="100">{{floor(Auth::user()->progress)}}%
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,31 +76,41 @@
         /**
          * On document load, countdown and begin.
          */
-        $(function() {
-            setTimeout(function() {
+        $(function () {
+            var url = '{{ route('main.refresh', $sentence->id) }}';
+            window.onbeforeunload = function () {
+                $.ajax({
+                    url: url,
+                    method: 'POST',
+                    success: function () {
+                        console.log('Submitted Refresh');
+                    }
+                });
+            };
+
+            setTimeout(function () {
                 begin();
             }, 3000);
 
             /**
              * Begin the question
              */
-            function begin()
-            {
-                setTimeout(function() {
+            function begin() {
+                setTimeout(function () {
                     $('#count').attr('hidden', true);
                     $('#sentence').attr('hidden', false);
                 }, 1000);
 
-                setTimeout(function() {
+                setTimeout(function () {
                     timer(10, 'timer', 'EXPIRED');
                     $('#question').attr('hidden', false);
                 }, 6000);
 
-                var questionTimeout = setTimeout(function() {
+                var questionTimeout = setTimeout(function () {
                     $('#question-text').attr('hidden', true);
                     // If there are no answers
                     var checked = $("input[name='answer']:checked");
-                    if(!checked.val()){
+                    if (!checked.val()) {
                         // Add a hidden input with 0 as value
                         $('#hidden').attr('checked', true);
                     }
@@ -106,8 +118,8 @@
                 }, 16000);
 
                 // If submit, stop timer in case of timeout
-                $('#submitButton').on('click', function() {
-                    if($('input[name="answer"]').is(":checked")) { // If there is something checked
+                $('#submitButton').on('click', function () {
+                    if ($('input[name="answer"]').is(":checked")) { // If there is something checked
                         console.log('StoppedTimer');
                         clearTimeout(questionTimeout); // Stop the timer
                     }
@@ -124,7 +136,7 @@
             function timer(seconds, element, text) {
                 var countDownDate = new Date();
                 countDownDate.setSeconds(countDownDate.getSeconds() + seconds);
-                var x = setInterval(function() {
+                var x = setInterval(function () {
                     // Get todays date and time
                     var now = new Date().getTime();
                     // Find the distance between now an the count down date
@@ -136,7 +148,7 @@
                     var el = document.getElementById(element);
                     el.innerHTML = s + " s";
                     // If the count down is finished, write some text
-                    if(s < 10) {
+                    if (s < 10) {
                         el.style.color = 'red';
                         el.style.fontWeight = 'bold';
                     }
