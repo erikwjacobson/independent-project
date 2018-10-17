@@ -10,7 +10,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
-
     /**
      * Administrator dashboard view
      *

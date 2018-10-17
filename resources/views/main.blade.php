@@ -6,21 +6,19 @@
         {!! Form::open(['route' => ['main.store', $sentence->id], 'method' => 'POST', 'id' => 'mainForm']) !!}
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <a href="{{route('home')}}"><&nbsp;&nbsp;Exit</a>
+                <a class="btn btn-danger btn-sm" href="{{route('instructions')}}"><&nbsp;&nbsp;Exit</a>
                 <br><br>
                 <div class="card">
                     <div class="card-header">
-                        <div class="row">
+                        <div class="row iphone-frame-text">
                             <div class="col-md-9">Message</div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 text-right">
                                 <b>Timer:</b>&nbsp;&nbsp;<span id="timer">-</span>
                             </div>
                         </div>
                     </div>
-
                     <div class="card-body">
-                        <div id="count" class="text-center">
-                            <h1 id="countValue">Starting...</h1>
+                        <div id="count">
                             <br>
                             <div class="typing-indicator">
                                 <span></span>
@@ -29,10 +27,11 @@
                             </div>
                             <br>
                         </div>
-                        <div id="sentence" class="text-center" hidden>
+                        <div id="sentence" class="message" hidden>
                             <h2>{{$sentence->text}}</h2>
                         </div>
                         <div id="question" hidden>
+                            <br>
                             <div id="question-text">
                                 <div class="row text-center">
                                     <div class="col-md-12">
@@ -54,6 +53,7 @@
                                 <button id="submitButton" type="submit" class="btn btn-lg btn-primary">Next</button>
                             </div>
                         </div>
+                        {{--TODO Reconsider if we need a progress bar--}}
                         <br>
                         <hr>
                         <br>
@@ -85,14 +85,12 @@
             function begin()
             {
                 setTimeout(function() {
-                    // timer(5, 'timer', '-');
                     $('#count').attr('hidden', true);
                     $('#sentence').attr('hidden', false);
                 }, 1000);
 
                 setTimeout(function() {
                     timer(10, 'timer', 'EXPIRED');
-                    $('#sentence').attr('hidden', true);
                     $('#question').attr('hidden', false);
                 }, 6000);
 
