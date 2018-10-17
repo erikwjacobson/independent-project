@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
                         <a class="nav-link active" href="{{route('admin.dashboard')}}">Dashboard</a>
@@ -12,6 +12,16 @@
                         <a class="nav-link" href="{{route('admin.sentences')}}">Sentences</a>
                     </li>
                 </ul>
+            </div>
+            <div class="col-md-2 text-right">
+                {!! Form::open(['route' => ['admin.cache'], 'method' => 'POST']) !!}
+                    <button id="clearCache" type="submit"
+                            class="btn btn-danger"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="Click this button if there are missing users in the data export file.">
+                        Clear Cache</button>
+                {!! Form::close() !!}
             </div>
         </div>
         <br>
@@ -64,4 +74,11 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
 @endsection
