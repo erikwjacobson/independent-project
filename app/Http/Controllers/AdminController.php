@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Emotion;
+use App\Record;
 use App\Sentence;
+use App\Style;
 use App\User;
 use App\Exports\DataExport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -29,6 +33,20 @@ class AdminController extends Controller
      */
     public function export()
     {
+        // Grab records and cache them for later use
+        $records = Cache::remember('records', 60, function () {
+            return Record::with('sentence')->get();
+        });
+        $allSentences = Cache::remember('sentences', 60, function () {
+            return Sentence::all();
+        });
+        $allStyles = Cache::remember('styles', 60, function() {
+            return Style::all();
+        });
+        $allEmotions = Cache::remember('emotions', 60, function() {
+            return Emotion::all();
+        });
+
         return (new DataExport())->download();
     }
 
