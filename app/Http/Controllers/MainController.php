@@ -6,6 +6,7 @@ use App\Emotion;
 use App\PracticeQuestion;
 use App\Record;
 use App\Sentence;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -19,7 +20,7 @@ class MainController extends Controller
      */
     public function practice()
     {
-        $user = Auth::user();
+        $user = User::findOrFail(Auth::id());
         $numberCompleted = $user->practice_questions_completed;
         $questions = PracticeQuestion::where('id', '>', $numberCompleted)->get();
 
@@ -41,7 +42,7 @@ class MainController extends Controller
      */
     public function practiceStore()
     {
-        $user = Auth::user();
+        $user = User::findOrFail(Auth::id());
         $user->practice_questions_completed += 1;
         $user->save();
         return redirect()->route('practice');
