@@ -12,10 +12,10 @@ class PracticeQuestionSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('practice_questions')->insert(['text' => 'wow rlly', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
-        DB::table('practice_questions')->insert(['text' => 'That\'s great!', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
-        DB::table('practice_questions')->insert(['text' => 'when u comin over?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
-        DB::table('practice_questions')->insert(['text' => 'Who is this? 🤔', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
-        DB::table('practice_questions')->insert(['text' => 'Thanks for stopping by!', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+        DB::table('practice_questions')->insert(['id' => 1, 'text' => 'wow rlly', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+        DB::table('practice_questions')->insert(['id' => 2,'text' => 'That\'s great!', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+        DB::table('practice_questions')->insert(['id' => 3,'text' => 'when u comin over?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+        DB::table('practice_questions')->insert(['id' => 4,'text' => 'Who is this? 🤔', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+        DB::table('practice_questions')->insert(['id' => 5,'text' => 'Thanks for stopping by!', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
     }
 }
