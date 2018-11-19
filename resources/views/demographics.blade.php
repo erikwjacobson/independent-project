@@ -96,7 +96,7 @@
                         <br>
                         <div class="row">
                             <div class="col-md-12 text-right">
-                                <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                                <button type="submit" class="btn col-md-12 btn-primary">Submit</button>
                             </div>
                         </div>
                     </div>

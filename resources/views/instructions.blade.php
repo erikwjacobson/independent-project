@@ -36,8 +36,9 @@
                         </ul>
                         <br>
                         <p>Once you are ready, click Proceed to begin the assessment</p>
+                        <br>
                         <div class="text-right">
-                            <a href="{{route('main')}}" class="btn btn-lg btn-primary">Proceed</a>
+                            <a href="{{route('main')}}" class="btn col-md-12 btn-primary">Proceed</a>
                         </div>
                     </div>
                 </div>
