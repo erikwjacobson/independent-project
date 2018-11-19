@@ -13,11 +13,13 @@ class DemographicSeeder extends Seeder
     public function run()
     {
         $a = [
-            ['name' => 'Age'],
-            ['name' => 'Gender'],
-            ['name' => 'Ethnicity'], // TODO ?
-            ['name' => 'GPA'], // TODO ?
-            ['name' => 'Year in School'], // TODO ?
+            ['name' => 'age'],
+            ['name' => 'gender'],
+            ['name' => 'primary_language'],
+            ['name' => 'twitter_use'],
+            ['name' => 'facebook_use'],
+            ['name' => 'youtube_use'],
+            ['name' => 'instagram_use'],
         ];
 
         foreach($a as $values) {

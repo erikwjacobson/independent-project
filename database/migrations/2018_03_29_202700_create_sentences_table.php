@@ -18,6 +18,7 @@ class CreateSentencesTable extends Migration
             $table->integer('style_id')->unsigned();
             $table->integer('emotion_id')->unsigned();
             $table->string('text');
+            $table->float('value');
             $table->timestamps();
 
             $table->foreign('style_id')
