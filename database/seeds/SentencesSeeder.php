@@ -27,17 +27,17 @@ class SentencesSeeder extends Seeder
              * Negative
              */
             // abbreviation
-            ["style_id" => $abbreviation, "text" => "I'm in a terrible mood.", "value" => -0.93, 'emotion_id' => $negative],
-            ["style_id" => $abbreviation, "text" => "I'm so sorry something came up and I can't come with.", "value" => -0.89, 'emotion_id' => $negative],
-            ["style_id" => $abbreviation, "text" => "I can’t believe I fell asleep in class today.", "value" => -0.87, 'emotion_id' => $negative],
-            ["style_id" => $abbreviation, "text" => "Wow, I can't believe you spoiled the movie for us!", "value" => -0.81, 'emotion_id' => $negative],
-            ["style_id" => $abbreviation, "text" => "I’ve been waiting for two hours now.", "value" => -0.79, 'emotion_id' => $negative],
-            ["style_id" => $abbreviation, "text" => "Ignore her, obviously you didn’t!", "value" => -0.77, 'emotion_id' => $negative],
-            ["style_id" => $abbreviation, "text" => "Why was there water all over the floor?", "value" => -0.75, 'emotion_id' => $negative],
-            ["style_id" => $abbreviation, "text" => "I'm going to go lay down.", "value" => -0.75, 'emotion_id' => $negative],
-            ["style_id" => $abbreviation, "text" => "I really wish you would have told me.", "value" => -0.74, 'emotion_id' => $negative],
-            ["style_id" => $abbreviation, "text" => "You’ve changed so much in the last year.", "value" => -0.7, 'emotion_id' => $negative],
-            ["style_id" => $abbreviation, "text" => "Why do you still try and talk to me?", "value" => -0.65, 'emotion_id' => $negative],
+            ["style_id" => $abbreviation, "text" => "im in a trbl mood", "value" => -0.93, 'emotion_id' => $negative],
+            ["style_id" => $abbreviation, "text" => "im so srry somthn came up and I cant come w/", "value" => -0.89, 'emotion_id' => $negative],
+            ["style_id" => $abbreviation, "text" => "i cant blv i fell asleep in class 2day", "value" => -0.87, 'emotion_id' => $negative],
+            ["style_id" => $abbreviation, "text" => "wow i cant blv u spoild the movie for us", "value" => -0.81, 'emotion_id' => $negative],
+            ["style_id" => $abbreviation, "text" => "ive been waitin for 2 hrs now", "value" => -0.79, 'emotion_id' => $negative],
+            ["style_id" => $abbreviation, "text" => "ignore her obv u didnt", "value" => -0.77, 'emotion_id' => $negative],
+            ["style_id" => $abbreviation, "text" => "y was there watr all over the flr", "value" => -0.75, 'emotion_id' => $negative],
+            ["style_id" => $abbreviation, "text" => "im gonna go lay dwn", "value" => -0.75, 'emotion_id' => $negative],
+            ["style_id" => $abbreviation, "text" => "i rlly wish u wouldve told me", "value" => -0.74, 'emotion_id' => $negative],
+            ["style_id" => $abbreviation, "text" => "youve chnged so much in the last yr", "value" => -0.7, 'emotion_id' => $negative],
+            ["style_id" => $abbreviation, "text" => "y do u still try 2 talk 2 me", "value" => -0.65, 'emotion_id' => $negative],
 
             // Grammatical
             ["style_id" => $grammatical, "text" => "You’re making this harder than it needs to be.", "value" => -0.9, 'emotion_id' => $negative],
@@ -69,18 +69,17 @@ class SentencesSeeder extends Seeder
              * Neutral
              */
             // abbreviation
-
-            ["style_id" => $abbreviation, "text" => "Did you really think I wouldn't find out?", "value" => 0, "emotion_id" => $neutral],
-            ["style_id" => $abbreviation, "text" => "Hey, I really meant what I said earlier.", "value" => 0, "emotion_id" => $neutral],
-            ["style_id" => $abbreviation, "text" => "I'm not in the mood for this right now.", "value" => 0, "emotion_id" => $neutral],
-            ["style_id" => $abbreviation, "text" => "At least you’re being honest.", "value" => 0, "emotion_id" => $neutral],
-            ["style_id" => $abbreviation, "text" => "How do you not remember?", "value" => 0, "emotion_id" => $neutral],
-            ["style_id" => $abbreviation, "text" => "Yeah, for sure.", "value" => 0, "emotion_id" => $neutral],
-            ["style_id" => $abbreviation, "text" => "If you haven't left yet, will you bring me a sweatshirt?", "value" => 0, "emotion_id" => $neutral],
-            ["style_id" => $abbreviation, "text" => "What are you doing anyways?", "value" => 0, "emotion_id" => $neutral],
-            ["style_id" => $abbreviation, "text" => "Are you okay?", "value" => 0, "emotion_id" => $neutral],
-            ["style_id" => $abbreviation, "text" => "We can just do it next weekend.", "value" => 0, "emotion_id" => $neutral],
-            ["style_id" => $abbreviation, "text" => "What email address should I use?", "value" => 0, "emotion_id" => $neutral],
+            ["style_id" => $abbreviation, "text" => "did u rlly think i wouldnt find out", "value" => 0, "emotion_id" => $neutral],
+            ["style_id" => $abbreviation, "text" => "hey i rlly meant wat i said earlier", "value" => 0, "emotion_id" => $neutral],
+            ["style_id" => $abbreviation, "text" => "im not in the mood for this rn", "value" => 0, "emotion_id" => $neutral],
+            ["style_id" => $abbreviation, "text" => "at least youre bein hnst", "value" => 0, "emotion_id" => $neutral],
+            ["style_id" => $abbreviation, "text" => "how do u not rmember", "value" => 0, "emotion_id" => $neutral],
+            ["style_id" => $abbreviation, "text" => "ye for sure", "value" => 0, "emotion_id" => $neutral],
+            ["style_id" => $abbreviation, "text" => "if u havent left yet, will u brng me a sweatshirt", "value" => 0, "emotion_id" => $neutral],
+            ["style_id" => $abbreviation, "text" => "wat r u doin anyway", "value" => 0, "emotion_id" => $neutral],
+            ["style_id" => $abbreviation, "text" => "r u okay", "value" => 0, "emotion_id" => $neutral],
+            ["style_id" => $abbreviation, "text" => "we can just do it nxt wknd", "value" => 0, "emotion_id" => $neutral],
+            ["style_id" => $abbreviation, "text" => "wat email addr shud I use", "value" => 0, "emotion_id" => $neutral],
 
             // Grammatical
             ["style_id" => $grammatical, "text" => "How come you didn't respond to me?", "value" => 0, "emotion_id" => $neutral],
@@ -112,17 +111,17 @@ class SentencesSeeder extends Seeder
              * Positive
              */
             // Abbreviated
-            ["style_id" => $abbreviation, "text" => "We should go to the beach.", "value" => 0.72, "emotion_id" => $positive],
-            ["style_id" => $abbreviation, "text" => "That would be awesome!", "value" => 0.73, "emotion_id" => $positive],
-            ["style_id" => $abbreviation, "text" => "That sounds like fun! Did you enjoy it?", "value" => 0.75, "emotion_id" => $positive],
-            ["style_id" => $abbreviation, "text" => "Probably sometime after lunch, if that's cool.", "value" => 0.78, "emotion_id" => $positive],
-            ["style_id" => $abbreviation, "text" => "I know you'll do great!", "value" => 0.81, "emotion_id" => $positive],
-            ["style_id" => $abbreviation, "text" => "Remind me to tell you about the funny dog video I saw today.", "value" => 0.82, "emotion_id" => $positive],
-            ["style_id" => $abbreviation, "text" => "That's such a cute idea!", "value" => 0.84, "emotion_id" => $positive],
-            ["style_id" => $abbreviation, "text" => "Go ahead and do that, take your time. ", "value" => 0.88, "emotion_id" => $positive],
-            ["style_id" => $abbreviation, "text" => "Good luck with the interview tomorrow.", "value" => 0.92, "emotion_id" => $positive],
-            ["style_id" => $abbreviation, "text" => "Congratulations on the new baby!", "value" => 0.94, "emotion_id" => $positive],
-            ["style_id" => $abbreviation, "text" => "It's so great to finally hear from you!", "value" => 0.95, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "we shud go to the beach", "value" => 0.72, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "that would be awesme", "value" => 0.73, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "that sounds like fun did u enjoy it", "value" => 0.75, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "prbly smetime after lunch if thats cool", "value" => 0.78, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "i now youll do grt", "value" => 0.81, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "remind me to tell u bout the fnny dog vid I saw today", "value" => 0.82, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "thats sych a cute idea", "value" => 0.84, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "go head and do tht, take ur time. ", "value" => 0.88, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "good luck w/ the intervw tmr", "value" => 0.92, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "grats on the new bby", "value" => 0.94, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "its so grt to finally hear from u", "value" => 0.95, "emotion_id" => $positive],
 
             // Grammatical
             ["style_id" => $grammatical, "text" => "That was such a great memory!", "value" => 0.66, "emotion_id" => $positive],
