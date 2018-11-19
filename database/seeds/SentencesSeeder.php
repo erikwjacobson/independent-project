@@ -117,7 +117,7 @@ class SentencesSeeder extends Seeder
             ["style_id" => $abbreviation, "text" => "prbly smetime after lunch if thats cool", "value" => 0.78, "emotion_id" => $positive],
             ["style_id" => $abbreviation, "text" => "i know ull do grt", "value" => 0.81, "emotion_id" => $positive],
             ["style_id" => $abbreviation, "text" => "remind me to tell u bout the fnny dog vid I saw today", "value" => 0.82, "emotion_id" => $positive],
-            ["style_id" => $abbreviation, "text" => "thats such a cute idea", "value" => 0.84, "emotion_id" => $positive],
+            ["style_id" => $abbreviation, "text" => "thts such a cute idea", "value" => 0.84, "emotion_id" => $positive],
             ["style_id" => $abbreviation, "text" => "go head and do tht, take ur time. ", "value" => 0.88, "emotion_id" => $positive],
             ["style_id" => $abbreviation, "text" => "good luck w/ the intervw tmr", "value" => 0.92, "emotion_id" => $positive],
             ["style_id" => $abbreviation, "text" => "grats on the new bby", "value" => 0.94, "emotion_id" => $positive],

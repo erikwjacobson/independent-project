@@ -17,9 +17,6 @@
                             <div class="col-md-6 text-center">
                                 <h4>Practice</h4>
                             </div>
-                            <div class="col-md-3 text-right">
-                                <b>Timer:</b>&nbsp;&nbsp;<span id="timer">-</span>
-                            </div>
                         </div>
                     </div>
                     <div class="card-body">
