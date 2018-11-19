@@ -50,8 +50,9 @@
                                 </div>
                                 <br>
                             </div>
+                            <br>
                             <div class="text-right">
-                                <button id="submitButton" type="submit" class="btn btn-lg btn-primary">Next</button>
+                                <button id="submitButton" type="submit" class="btn col-md-12 btn-primary">Next</button>
                             </div>
                         </div>
                         {{--TODO Reconsider if we need a progress bar--}}

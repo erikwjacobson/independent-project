@@ -29,8 +29,9 @@
                     </ul>
                     <br>
                     <p>Once you are ready, click Practice to begin the practice questions</p>
+                    <br>
                     <div class="text-right">
-                        <a href="{{route('practice')}}" class="btn btn-lg btn-primary">Practice</a>
+                        <a href="{{route('practice')}}" class="btn col-md-12 btn-primary">Practice</a>
                     </div>
                 </div>
             </div>
