@@ -22,8 +22,7 @@
                             Please answer the question to the best of your ability.
                         </li>
                         <li>
-                            The practice questions do not contain a timer, but each question will be timed when
-                            answering the real questions.
+                            The practice questions are not timed, but the remaining questions will have a time limit.
                         </li>
                         <li>Your progress will be shown on the green bar at the bottom of the screen.</li>
                     </ul>

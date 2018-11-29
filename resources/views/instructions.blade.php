@@ -5,13 +5,12 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    {{--TODO Fix this page--}}
                     <div class="card-header">Instructions</div>
                     <div class="card-body">
                         <h4>Please carefully review the following instructions before beginning:</h4>
                         <ul>
                             <li>
-                                This study will consist of two phases.
+                                This study will consist of two sections with 50 questions each.
                                 In between the two sections you will be allowed a short break.
                             </li>
                             <li>
@@ -31,7 +30,7 @@
                                 regardless of the time remaining.
                             </li>
                             <li>Your progress will be shown on the green bar at the bottom of the screen.</li>
-                            <li>Before you begin, please tell the researchers if you have any questions.</li>
+                            <li>Before you begin, please tell the researcher if you have any questions.</li>
                             <li>After you complete both sections, please tell the researcher.</li>
                         </ul>
                         <br>
