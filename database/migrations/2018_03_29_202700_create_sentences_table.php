@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -14,7 +15,7 @@ class CreateSentencesTable extends Migration
     public function up()
     {
         Schema::create('sentences', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id', 1);
             $table->integer('style_id')->unsigned();
             $table->integer('emotion_id')->unsigned();
             $table->string('text');
@@ -28,8 +29,6 @@ class CreateSentencesTable extends Migration
                 ->references('id')
                 ->on('emotions');
         });
-
-        DB::statement("ALTER TABLE sentences AUTO_INCREMENT = 1;");
     }
 
     /**

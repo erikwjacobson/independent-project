@@ -15,7 +15,7 @@ class CreateRecordsTable extends Migration
     public function up()
     {
         Schema::create('records', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id', 1);
             $table->integer('sentence_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('answer'); // What the answer was given by the participant
@@ -28,8 +28,6 @@ class CreateRecordsTable extends Migration
                 ->references('id')
                 ->on('sentences');
         });
-
-        DB::statement("ALTER TABLE records AUTO_INCREMENT = 1;");
     }
 
     /**
