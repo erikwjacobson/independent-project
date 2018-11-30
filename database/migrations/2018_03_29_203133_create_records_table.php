@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -27,6 +28,8 @@ class CreateRecordsTable extends Migration
                 ->references('id')
                 ->on('sentences');
         });
+
+        DB::statement("ALTER TABLE records AUTO_INCREMENT = 1;");
     }
 
     /**

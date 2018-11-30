@@ -28,6 +28,8 @@ class CreateSentencesTable extends Migration
                 ->references('id')
                 ->on('emotions');
         });
+
+        DB::statement("ALTER TABLE sentences AUTO_INCREMENT = 1;");
     }
 
     /**
