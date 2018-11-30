@@ -13,9 +13,9 @@ class EmotionsSeeder extends Seeder
     public function run()
     {
         $a = [
-            ['name' => 'Positive'],
-            ['name' => 'Neutral'],
-            ['name' => 'Negative'],
+            ['id' => 1, 'name' => 'Positive'],
+            ['id' => 2, 'name' => 'Neutral'],
+            ['id' => 3, 'name' => 'Negative'],
         ];
 
         foreach($a as $array) {
