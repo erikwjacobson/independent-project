@@ -45,8 +45,8 @@
                                     <input id="hidden" type="radio" name="answer" value="0" hidden required>
                                     @foreach($emotions as $emotion)
                                         <div class="col-md-{{floor(12 / $emotions->count())}}">
-                                            <input type="radio" name="answer"
-                                                   value="{{$emotion->id}}">&nbsp;{{$emotion->name}}
+                                            <input id="emotion_{{$emotion->id}}" type="radio" name="answer"
+                                                   value="{{$emotion->id}}">&nbsp;<label for="emotion_{{$emotion->id}}">{{$emotion->name}}</label>
                                         </div>
                                     @endforeach
                                 </div>
