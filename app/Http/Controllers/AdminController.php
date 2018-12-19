@@ -8,6 +8,8 @@ use App\Sentence;
 use App\Style;
 use App\User;
 use App\Exports\DataExport;
+use App\Exports\QuestionExport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Facades\Excel;
@@ -27,11 +29,12 @@ class AdminController extends Controller
     }
 
     /**
-     * Export the data
+     * Exports data
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function export()
+    public function export(Request $request)
     {
         // Grab records and cache them for later use
         $records = Cache::remember('records', 60, function () {
@@ -47,7 +50,15 @@ class AdminController extends Controller
             return Emotion::all();
         });
 
-        return (new DataExport())->download();
+        // Export based upon type
+        switch($request->type) {
+            case 'q':
+                $filename = 'question_' . Carbon::today()->toDateString(). '.xlsx';
+                return (new QuestionExport())->download($filename);
+            default:
+                $filename = 'category_' . Carbon::today()->toDateString(). '.xlsx';
+                return (new DataExport())->download($filename);
+        }
     }
 
     /**

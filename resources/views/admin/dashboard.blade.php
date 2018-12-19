@@ -65,9 +65,12 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         {!! Form::open(['route' => ['admin.export'], 'method' => 'POST', 'id' => 'exportForm']) !!}
-                            <button type="submit" class="btn btn-lg btn-success">Export Data</button>
+                        <h3>Data Export</h3>
+                        {!! Form::select('type', ['q' => 'User\'s scores on individual sentences', 'd' => 'Percentage scores for individual categories'], null, ['class' => 'form-control', 'placeholder' => 'Select type of data to export...']) !!}
+                        <br>
+                        <button type="submit" class="btn btn-lg btn-success">Export</button>
                         {!! Form::close() !!}
                     </div>
                 </div>
