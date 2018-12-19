@@ -7,7 +7,7 @@ use App\Record;
 use App\Sentence;
 use App\Style;
 use App\User;
-use App\Exports\DataExport;
+use App\Exports\CategoryExport;
 use App\Exports\QuestionExport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -57,7 +57,7 @@ class AdminController extends Controller
                 return (new QuestionExport())->download($filename);
             default:
                 $filename = 'category_' . Carbon::today()->toDateString(). '.xlsx';
-                return (new DataExport())->download($filename);
+                return (new CategoryExport())->download($filename);
         }
     }
 

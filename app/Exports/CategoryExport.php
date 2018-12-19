@@ -17,7 +17,7 @@ use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use Maatwebsite\Excel\Events\BeforeSheet;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class DataExport implements FromCollection, WithMapping, WithHeadings, WithColumnFormatting, WithStrictNullComparison
+class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithColumnFormatting, WithStrictNullComparison
 {
     use Exportable;
 
