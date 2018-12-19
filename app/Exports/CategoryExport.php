@@ -13,14 +13,14 @@ use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use Maatwebsite\Excel\Events\BeforeSheet;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class DataExport implements FromCollection, WithMapping, WithHeadings, WithColumnFormatting
+class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithColumnFormatting, WithStrictNullComparison
 {
     use Exportable;
 
-    private $fileName = 'data.xlsx';
     public $sheet = [];
 
     public function map($user): array

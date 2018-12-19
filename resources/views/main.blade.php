@@ -32,7 +32,7 @@
                             <div id="question-text">
                                 <div class="row text-center">
                                     <div class="col-md-12">
-                                        What is the underlying emotion of the previously displayed sentence?
+                                        What is the underlying emotion of the displayed sentence?
                                     </div>
                                 </div>
                                 <br>
