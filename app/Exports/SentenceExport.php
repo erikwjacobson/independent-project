@@ -24,8 +24,8 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function map($sentence): array
     {
-        $users = User::all();
-        $records = Cache::get('records');
+        $users = Cache::get('users');
+        $records = Cache::get('records')->whereIn('user_id', $users->pluck('id'));
 
         $sentenceRecords = $records->where('sentence_id', $sentence->id)->pluck('correct')->toArray();
         $sentenceRecords = array_map(function ($item) {
@@ -42,6 +42,8 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
             $sentence->text,
             $average,
             $sentence->value,
+            $sentence->style->name,
+            $sentence->emotion->name,
             $sentence->emotion_id,
         ];
 
@@ -63,7 +65,7 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
     {
         $users = User::all();
 
-        $a = ['Sentence', 'Avg_Score', 'Sent_Value', 'Correct_Emot'];
+        $a = ['Sentence', 'Avg_Score', 'Sent_Value', 'Style', 'Emotion', 'Correct_Emotion'];
         foreach ($users as $user) {
             array_push($a, $user->username. '_answer');
         }
@@ -73,6 +75,6 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function collection()
     {
-        return Sentence::all();
+        return Cache::get('sentences');
     }
 }

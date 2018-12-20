@@ -66,6 +66,6 @@ class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function collection()
     {
-        return User::all();
+        return Cache::get('users');
     }
 }

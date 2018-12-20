@@ -71,6 +71,6 @@ class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithC
 
     public function collection()
     {
-        return User::all();
+        return Cache::get('users');
     }
 }
