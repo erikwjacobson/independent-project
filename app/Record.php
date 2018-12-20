@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Record extends Model
 {
     protected $fillable = ['user_id', 'sentence_id', 'answer'];
+
+    protected $appends = ['correct'];
     /**
      * Each record belongs to one user
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -24,5 +26,15 @@ class Record extends Model
     public function sentence()
     {
         return $this->hasOne(Sentence::class, 'id', 'sentence_id');
+    }
+
+    /**
+     * Get correct attribute
+     *
+     * @return bool
+     */
+    public function getCorrectAttribute()
+    {
+        return $this->answer === $this->sentence->emotion_id ? true : false;
     }
 }
