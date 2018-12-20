@@ -63,7 +63,7 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function headings(): array
     {
-        $users = User::all();
+        $users = Cache::get('users');
 
         $a = ['Sentence', 'Avg_Score', 'Sent_Value', 'Style', 'Emotion', 'Correct_Emotion'];
         foreach ($users as $user) {
