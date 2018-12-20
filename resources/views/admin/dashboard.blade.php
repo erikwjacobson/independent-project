@@ -68,7 +68,7 @@
                     <div class="col-md-6">
                         {!! Form::open(['route' => ['admin.export'], 'method' => 'POST', 'id' => 'exportForm']) !!}
                         <h3>Data Export</h3>
-                        {!! Form::select('type', ['q' => 'User\'s scores on individual sentences', 'd' => 'Percentage scores for individual categories'], null, ['class' => 'form-control', 'placeholder' => 'Select type of data to export...']) !!}
+                        {!! Form::select('type', ['q' => 'User\'s scores on individual sentences', 'c' => 'Percentage scores for individual categories', 's' => 'Average scores on individual sentences'], null, ['class' => 'form-control', 'placeholder' => 'Select type of data to export...']) !!}
                         <br>
                         <button type="submit" class="btn btn-lg btn-success">Export</button>
                         {!! Form::close() !!}

@@ -2,9 +2,7 @@
 
 namespace App\Exports;
 
-use App\Emotion;
-use App\Record;
-use App\Style;
+use App\Sentence;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -18,31 +16,40 @@ use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use Maatwebsite\Excel\Events\BeforeSheet;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithStrictNullComparison
+class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithStrictNullComparison
 {
     use Exportable;
 
     public $sheet = [];
 
-    public function map($user): array
+    public function map($sentence): array
     {
-        $sentences = Cache::get('sentences');
+        $users = User::all();
         $records = Cache::get('records');
 
+        $sentenceRecords = $records->where('sentence_id', $sentence->id)->pluck('correct')->toArray();
+        $sentenceRecords = array_map(function ($item) {
+            return $item ? 1 : 0;
+        }, $sentenceRecords);
+
+        if (!empty($sentenceRecords)) {
+            $average = array_sum($sentenceRecords) / count($sentenceRecords);
+        } else {
+            $average = NULL;
+        }
+
         $this->sheet = [
-            $user->username,
+            $sentence->text,
+            $average,
+            $sentence->value,
+            $sentence->emotion_id,
         ];
 
-        foreach($sentences as $sentence) {
+        foreach($users as $user) {
             $record = $records->where('user_id', $user->id)->where('sentence_id', $sentence->id)->first();
 
             if ($record) {
-                if ($record->answer == 0) {
-                    $value = 9; // Signals that the question timed out
-                } else {
-                    // Gives value of 1 if correct and 0 if incorrect
-                    $value = $record->answer == $sentence->emotion_id ? 1 : 0;
-                }
+                $value = $record->answer;
             }
             else {
                 $value = "NA"; // Question not yet answered
@@ -54,11 +61,11 @@ class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function headings(): array
     {
-        $sentences = Cache::get('sentences');
+        $users = User::all();
 
-        $a = ['User'];
-        foreach($sentences as $index => $sentence) {
-            array_push($a, 'Q' . ($index + 1) . ' - ' . $sentence->text);
+        $a = ['Sentence', 'Avg_Score', 'Sent_Value', 'Correct_Emot'];
+        foreach ($users as $user) {
+            array_push($a, $user->username. '_answer');
         }
 
         return $a;
@@ -66,6 +73,6 @@ class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function collection()
     {
-        return User::all();
+        return Sentence::all();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Emotion;
+use App\Exports\SentenceExport;
 use App\Record;
 use App\Sentence;
 use App\Style;
@@ -55,6 +56,12 @@ class AdminController extends Controller
             case 'q':
                 $filename = 'question_' . Carbon::today()->toDateString(). '.xlsx';
                 return (new QuestionExport())->download($filename);
+            case 's':
+                $filename = 'sentence_' . Carbon::today()->toDateString(). '.xlsx';
+                return (new SentenceExport())->download($filename);
+            case 'c':
+                $filename = 'category_' . Carbon::today()->toDateString(). '.xlsx';
+                return (new CategoryExport())->download($filename);
             default:
                 $filename = 'category_' . Carbon::today()->toDateString(). '.xlsx';
                 return (new CategoryExport())->download($filename);
