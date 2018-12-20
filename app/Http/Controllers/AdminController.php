@@ -42,13 +42,16 @@ class AdminController extends Controller
             return Record::with('sentence')->get();
         });
         $allSentences = Cache::remember('sentences', 60, function () {
-            return Sentence::all();
+            return Sentence::with('emotion', 'style')->get();
         });
         $allStyles = Cache::remember('styles', 60, function() {
             return Style::all();
         });
         $allEmotions = Cache::remember('emotions', 60, function() {
             return Emotion::all();
+        });
+        $allUsers = Cache::remember('users', 60, function() {
+            return User::where('admin', false)->get();
         });
 
         // Export based upon type
@@ -92,13 +95,16 @@ class AdminController extends Controller
             return Record::with('sentence')->get();
         });
         $allSentences = Cache::remember('sentences', 60, function () {
-            return Sentence::all();
+            return Sentence::with('emotion', 'style')->get();
         });
         $allStyles = Cache::remember('styles', 60, function() {
             return Style::all();
         });
         $allEmotions = Cache::remember('emotions', 60, function() {
             return Emotion::all();
+        });
+        $allUsers = Cache::remember('users', 60, function() {
+            return User::where('admin', false)->get();
         });
 
         return redirect()->back();
