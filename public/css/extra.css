@@ -1,5 +1,12 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans:400,600,700";
 
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 0.05em 0 .1em;
+    vertical-align: -0.1em;
+}
+
 .iphone-frame-text {
     font-family: 'Open Sans';
     color: #2095FE;

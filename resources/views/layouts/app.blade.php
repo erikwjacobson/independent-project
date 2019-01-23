@@ -62,9 +62,12 @@
             @yield('content')
         </main>
     </div>
+    <script src="//twemoji.maxcdn.com/2/twemoji.min.js?11.2"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $(function() {
+            twemoji.parse(document.body);
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
