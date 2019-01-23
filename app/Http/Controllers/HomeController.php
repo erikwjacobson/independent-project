@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
@@ -26,7 +27,11 @@ class HomeController extends Controller
     public function home(Request $request)
     {
         $request->session()->put('break', false); // Put in session that user has not taken a break yet
-        return view('home');
+        if(Auth::user()->practice_questions_completed < 5) {
+            return view('home');
+        } else {
+            return redirect()->route('instructions');
+        }
     }
 
     /**
