@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Demo
+Route::get('/demo', 'MainController@demo')->name('demo');
+Route::post('/demo/close-alert', 'MainController@demoCloseAlert')->name('demo-close-alert');
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {

@@ -9,6 +9,7 @@ use App\Sentence;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
@@ -132,5 +133,29 @@ class MainController extends Controller
     public function end() {
 
         return view('end');
+    }
+
+    /**
+     * Demo function
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function demo()
+    {
+        $sentences = Sentence::all();
+        $emotions = Emotion::all();
+
+        $sentence = $sentences->random(1)->first();
+        return view('demo', compact('emotions', 'sentence'));
+    }
+
+    /**
+     * Close the
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function demoCloseAlert(Request $request)
+    {
+        Cache::put('demo-close-alert', true, 20);
+        return response("Success", 200);
     }
 }
