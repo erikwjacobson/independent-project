@@ -55,7 +55,7 @@
                                             @else
                                                 <td>Incomplete</td>
                                             @endif
-                                            <td>{{Carbon\Carbon::parse($participant->created_at)->toFormattedDateString()}}</td>
+                                            <td>{{Carbon\Carbon::parse($participant->created_at)->format('M d, Y - h:m A')}}</td>
                                         </tr>
                                     @endforeach
                                 </table>

@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Demo
+Route::get('/demo', 'MainController@demo')->name('demo');
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
