@@ -147,15 +147,4 @@ class MainController extends Controller
         $sentence = $sentences->random(1)->first();
         return view('demo', compact('emotions', 'sentence'));
     }
-
-    /**
-     * Close the
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function demoCloseAlert(Request $request)
-    {
-        Cache::put('demo-close-alert', true, 20);
-        return response("Success", 200);
-    }
 }

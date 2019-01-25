@@ -7,21 +7,15 @@
             <div class="col-md-8">
                 <a class="btn btn-danger btn-sm" href="{{route('instructions')}}"><&nbsp;&nbsp;Exit</a>
                 <br><br>
-                @if(\Illuminate\Support\Facades\Cache::get('demo-close-alert'))
-                @else
-                    <div class="alert alert-warning" role="alert">
-                        <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h3 class="text-center">! Demonstration !</h3>
-                        <p>
-                            This interface was used to study individual's ability to interpret messages written in
-                            different ways. Some are poorly written, some are written with proper grammar, and others
-                            make use of emojis. We predicted that people would better interpret emoji messages than
-                            poorly written messages.
-                        </p>
-                    </div>
-                @endif
+                <div class="alert alert-warning" role="alert">
+                    <h3 class="text-center">! Demonstration !</h3>
+                    <p>
+                        This interface was used to study individual's ability to interpret messages written in
+                        different ways. Some are poorly written, some are written with proper grammar, and others
+                        make use of emojis. We predicted that people would better interpret emoji messages than
+                        poorly written messages.
+                    </p>
+                </div>
                 <div class="card">
                     <div class="card-header">
                         <div class="row iphone-frame-text">
@@ -129,13 +123,6 @@
                     if ($('input[name="answer"]').is(":checked")) { // If there is something checked
                         clearTimeout(questionTimeout); // Stop the timer
                     }
-                });
-
-                $('#closeAlert').on('click', function() {
-                    $.ajax({
-                        url: '{{route('demo-close-alert')}}',
-                        method: 'POST',
-                    });
                 });
             }
         });
