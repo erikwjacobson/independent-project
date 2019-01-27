@@ -52,9 +52,9 @@
                                                 {{$participant->username}}
                                                 <br><br>
                                                 @if($participant->complete)
-                                                    <span class="oi oi-circle-check text-success" title="User has completed each question"></span>
+                                                    <span class="oi oi-circle-check text-success" title="User has completed the study"></span>
                                                 @else
-                                                    <span class="oi oi-circle-x text-danger" title="User has not completed each question"></span>
+                                                    <span class="oi oi-circle-x text-danger" title="User has not completed the study"></span>
                                                 @endif
                                             </td>
                                             <td>
