@@ -24,9 +24,18 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
-        $participants = User::orderBy('created_at')->with('records')->get();
+        $participants = User::orderBy('id')->with('records')->get();
 
         return view('admin.dashboard', compact('participants'));
+    }
+
+    /**
+     * Returns the Export Page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function exportPage()
+    {
+        return view('admin.export');
     }
 
     /**
