@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/admin/sentences', 'AdminController@sentences')->name('admin.sentences');
         Route::post('/admin/export', 'AdminController@export')->name('admin.export');
         Route::post('/admin/cache', 'AdminController@clearCache')->name('admin.cache');
+        Route::post('/admin/store', 'AdminController@storeUserData')->name('admin.store');
     });
 });
 

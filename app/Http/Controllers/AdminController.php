@@ -30,6 +30,26 @@ class AdminController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function storeUserData(Request $request)
+    {
+        foreach($request->id as $id) {
+            $user = User::findOrFail($id);
+            $user->computer = $request->computer[$id];
+            $user->researcher_initials = $request->researcher_initials[$id];
+            $user->overtime = $request->overtime[$id];
+            $user->credit_granted = $request->credit_granted[$id];
+            $user->comments = $request->comments[$id];
+
+            $user->save();
+        }
+
+        return redirect()->back();
+    }
+
+    /**
      * Exports data
      *
      * @param Request $request
