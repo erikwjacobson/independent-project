@@ -45,7 +45,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'admin'], function() {
         Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
         Route::get('/admin/sentences', 'AdminController@sentences')->name('admin.sentences');
-        Route::post('/admin/export', 'AdminController@export')->name('admin.export');
+        Route::get('/admin/export', 'AdminController@exportPage')->name('admin.export');
+        Route::post('/admin/export', 'AdminController@export')->name('admin.export.data');
         Route::post('/admin/cache', 'AdminController@clearCache')->name('admin.cache');
         Route::post('/admin/store', 'AdminController@storeUserData')->name('admin.store');
     });
