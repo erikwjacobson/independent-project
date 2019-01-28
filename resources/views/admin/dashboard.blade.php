@@ -32,6 +32,14 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                {!! Form::open(['route' => ['admin.export.users'], 'method' => 'POST']) !!}
+                                <button type="submit" class="btn btn-success" title="Download user information into an excel spreadsheet">Download</button>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                        <br>
                         {!! Form::open(['route' => ['admin.store'], 'method' => 'POST']) !!}
                         <div class="row">
                             <div class="col-md-12">
