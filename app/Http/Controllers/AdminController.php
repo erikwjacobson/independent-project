@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Emotion;
 use App\Exports\SentenceExport;
+use App\Exports\UserExport;
 use App\Record;
 use App\Sentence;
 use App\Style;
@@ -98,6 +99,18 @@ class AdminController extends Controller
                 $filename = 'category_' . Carbon::today()->toDateString(). '.xlsx';
                 return (new CategoryExport())->download($filename);
         }
+    }
+
+    /**
+     * Export user information
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function exportUsers(Request $request)
+    {
+        $filename = 'users_' . Carbon::today()->toDateString() . '.xlsx';
+        return (new UserExport())->download($filename);
     }
 
     /**
