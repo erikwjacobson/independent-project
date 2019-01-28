@@ -29,12 +29,14 @@
                                     <tr>
                                         <th>Sentence</th>
                                         <th>Style</th>
+                                        <th>Watson Sentiment Value</th>
                                         <th>Correct Emotion</th>
                                     </tr>
                                     @foreach($sentences as $sentence)
                                         <tr>
                                             <td>{{$sentence->text}}</td>
                                             <td>{{$sentence->style->name}}</td>
+                                            <td>{{$sentence->value}}</td>
                                             <td>{{$sentence->emotion->name}}</td>
                                         </tr>
                                     @endforeach
