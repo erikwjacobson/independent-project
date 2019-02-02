@@ -68,7 +68,7 @@
                                             <td>
                                                 {{Carbon\Carbon::parse($participant->created_at)->format('M d, Y')}}
                                                 <br>
-                                                {{Carbon\Carbon::parse($participant->created_at)->format('h:m A')}}
+                                                {{Carbon\Carbon::parse($participant->created_at)->format('h:i A')}}
                                             </td>
                                             <td>
                                                 {!! Form::select('computer[' . $participant->id . ']', ['A' => 'A', 'B' => 'B', 'C' => 'C', 'D' => 'D'], $participant->computer, ['placeholder' => '', 'class' => 'form-control', 'style' => 'width: 4em;', 'title' => 'Computer']) !!}
