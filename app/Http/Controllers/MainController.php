@@ -143,7 +143,7 @@ class MainController extends Controller
      */
     public function demo()
     {
-        $sentences = Sentence::all();
+        $sentences = PracticeQuestion::all();
         $emotions = Emotion::all();
 
         $sentence = $sentences->random(1)->first();
