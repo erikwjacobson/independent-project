@@ -35,7 +35,9 @@
                         <div class="row">
                             <div class="col-md-12 text-right">
                                 {!! Form::open(['route' => ['admin.export.users'], 'method' => 'POST']) !!}
-                                <button type="submit" class="btn btn-success" title="Download user information into an excel spreadsheet">Download</button>
+                                <button type="submit" class="btn btn-success"
+                                        title="Download user information into an excel spreadsheet">Download
+                                </button>
                                 {!! Form::close() !!}
                             </div>
                         </div>
@@ -44,14 +46,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <table class="table table-bordered">
-                                    <tr>
-                                        <th>User</th>
-                                        <th>Date</th>
-                                        <th>Computer</th>
-                                        <th>Researcher</th>
-                                        <th>Overtime</th>
-                                        <th>Credit Granted</th>
-                                        <th>Comments</th>
+                                    <tr class="fixed">
+                                        <th class="fixed-header">User</th>
+                                        <th class="fixed-header">Date</th>
+                                        <th class="fixed-header">Computer</th>
+                                        <th class="fixed-header">Researcher</th>
+                                        <th class="fixed-header">Overtime</th>
+                                        <th class="fixed-header">Credit Granted</th>
+                                        <th class="fixed-header">Comments</th>
                                     </tr>
                                     @foreach($participants as $participant)
                                         <input type="hidden" value="{{$participant->id}}" name="id[]">
@@ -60,9 +62,11 @@
                                                 {{$participant->username}}
                                                 <br><br>
                                                 @if($participant->complete)
-                                                    <span class="oi oi-circle-check text-success" title="User has completed the study"></span>
+                                                    <span class="oi oi-circle-check text-success"
+                                                          title="User has completed the study"></span>
                                                 @else
-                                                    <span class="oi oi-circle-x text-danger" title="User has not completed the study"></span>
+                                                    <span class="oi oi-circle-x text-danger"
+                                                          title="User has not completed the study"></span>
                                                 @endif
                                             </td>
                                             <td>
@@ -71,7 +75,7 @@
                                                 {{Carbon\Carbon::parse($participant->created_at)->format('h:i A')}}
                                             </td>
                                             <td>
-                                                {!! Form::select('computer[' . $participant->id . ']', ['A' => 'A', 'B' => 'B', 'C' => 'C', 'D' => 'D'], $participant->computer, ['placeholder' => '', 'class' => 'form-control', 'style' => 'width: 4em;', 'title' => 'Computer']) !!}
+                                                {!! Form::select('computer[' . $participant->id . ']', ['A' => 'A', 'B' => 'B', 'C' => 'C', 'D' => 'D'], $participant->computer, ['placeholder' => '', 'class' => 'form-control', 'style' => 'width: 5em;', 'title' => 'Computer']) !!}
                                             </td>
                                             <td>{!! Form::text('researcher_initials[' . $participant->id . ']', $participant->researcher_initials, ['placeholder' => 'Initials', 'class' => 'form-control', 'style' => 'width: 5em;', 'title' => 'Researcher Initials']) !!}</td>
                                             <td>{!! Form::select('overtime[' . $participant->id . ']', [true => 'TRUE', false => 'FALSE'], $participant->overtime, ['placeholder' => '', 'class' => 'form-control', 'title' => 'Overtime']) !!}</td>
