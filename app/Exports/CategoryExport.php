@@ -29,6 +29,7 @@ class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithC
         $emotions = Cache::get('emotions');
         $this->sheet = [
             $user->username,
+            $user->complete,
         ];
         foreach($styles as $style) {
             foreach($emotions as $emotion) {
@@ -42,6 +43,7 @@ class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithC
     {
         return [
             'User',
+            'Completed',
             'Abbr_Pos',
             'Abbr_Neu',
             'Abbr_Neg',
