@@ -7,12 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Sentence extends Model
 {
     /**
-     * Appends
-     * @var array
-     */
-    protected $appends = ['averageScore'];
-
-    /**
      * Each sentence has one style
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
