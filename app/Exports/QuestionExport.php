@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Demographic;
 use App\Emotion;
 use App\Record;
+use App\Sentence;
 use App\Style;
 use App\User;
 use Carbon\Carbon;
@@ -31,9 +32,9 @@ class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function __construct()
     {
-        $this->sentences = Cache::get('sentences');
-        $this->records = Cache::get('records');
-        $this->users = Cache::get('users');
+        $this->sentences = Sentence::with('emotion', 'style')->get();
+        $this->records = Record::with('sentence')->get();
+        $this->users = User::where('admin', false)->with('demographics')->get();
         $this->demographics = Demographic::all();
     }
 
