@@ -3,22 +3,14 @@
 namespace App\Exports;
 
 use App\Demographic;
-use App\Emotion;
 use App\Record;
 use App\Sentence;
-use App\Style;
 use App\User;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
-use Maatwebsite\Excel\Events\BeforeSheet;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithStrictNullComparison
 {

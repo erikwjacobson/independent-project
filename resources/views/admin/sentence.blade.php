@@ -42,7 +42,6 @@
                                         <th>Style</th>
                                         <th>Watson Sentiment Value</th>
                                         <th>Correct Emotion</th>
-                                        <th>Average Score</th>
                                     </tr>
                                     @foreach($sentences as $sentence)
                                         <tr>
@@ -50,7 +49,6 @@
                                             <td>{{$sentence->style->name}}</td>
                                             <td>{{$sentence->value}}</td>
                                             <td>{{$sentence->emotion->name}}</td>
-                                            <td>{{$sentence->averageScore}}</td>
                                         </tr>
                                     @endforeach
                                 </table>
