@@ -113,7 +113,7 @@ class AdminController extends Controller
     public function buildExports()
     {
         (new QuestionExport())->queue('question_' . Carbon::today()->toDateString(). '.xlsx');
-        (new CategoryExport())->queue('category_' . Carbon::today()->toDateString(). '.xlsx');
+//        (new CategoryExport())->queue('category_' . Carbon::today()->toDateString(). '.xlsx');
         (new SentenceExport())->queue('sentence_' . Carbon::today()->toDateString(). '.xlsx');
 
         return redirect()->back();
