@@ -17,7 +17,7 @@ use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use Maatwebsite\Excel\Events\BeforeSheet;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithColumnFormatting, WithStrictNullComparison
+class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithStrictNullComparison
 {
     use Exportable;
 
@@ -28,22 +28,24 @@ class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithC
 
     public function __construct()
     {
-        $this->styles = Cache::get('styles');
-        $this->emotions = Cache::get('emotions');
-        $this->users = Cache::get('users');
+        $this->styles = Style::all();
+        $this->emotions = Emotion::all();
+        $this->users = User::where('admin', false)->get();
     }
 
     public function map($user): array
     {
         $styles = $this->styles;
         $emotions = $this->emotions;
+
         $this->sheet = [
             $user->username,
             $user->complete,
         ];
         foreach($styles as $style) {
             foreach($emotions as $emotion) {
-                array_push($this->sheet, $user->computeScore($style->name, $emotion->name));
+                $value = $user->computeScore($style, $emotion);
+                array_push($this->sheet, $value);
             }
         }
         return $this->sheet;
@@ -66,23 +68,8 @@ class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithC
         ];
     }
 
-    public function columnFormats(): array
-    {
-        return [
-            'B' => NumberFormat::FORMAT_NUMBER_00,
-            'C' => NumberFormat::FORMAT_NUMBER_00,
-            'D' => NumberFormat::FORMAT_NUMBER_00,
-            'E' => NumberFormat::FORMAT_NUMBER_00,
-            'F' => NumberFormat::FORMAT_NUMBER_00,
-            'G' => NumberFormat::FORMAT_NUMBER_00,
-            'H' => NumberFormat::FORMAT_NUMBER_00,
-            'I' => NumberFormat::FORMAT_NUMBER_00,
-            'J' => NumberFormat::FORMAT_NUMBER_00,
-        ];
-    }
-
     public function collection()
     {
-        return collect($this->users);
+        return $this->users;
     }
 }

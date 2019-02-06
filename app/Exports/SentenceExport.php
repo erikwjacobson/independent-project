@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Record;
 use App\Sentence;
 use App\User;
 use Carbon\Carbon;
@@ -27,9 +28,9 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function __construct()
     {
-        $this->users = Cache::get('users');
-        $this->records = Cache::get('records');
-        $this->sentences = Cache::get('sentences');
+        $this->users = User::where('admin', false)->with('demographics')->get();
+        $this->records = Record::with('sentence')->get();
+        $this->sentences = Sentence::with('emotion', 'style')->get();
     }
 
     public function map($sentence): array
