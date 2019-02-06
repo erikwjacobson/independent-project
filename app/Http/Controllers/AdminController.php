@@ -105,7 +105,6 @@ class AdminController extends Controller
     public function sentences()
     {
         $sentences = Sentence::with(['emotion', 'style', 'records'])->get();
-
         return view('admin.sentence', compact('sentences'));
     }
 
