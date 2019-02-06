@@ -22,9 +22,9 @@ class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithC
     use Exportable;
 
     public $sheet = [];
-    protected $styles;
-    protected $emotions;
-    protected $users;
+    public $styles;
+    public $emotions;
+    public $users;
 
     public function __construct()
     {
@@ -83,6 +83,6 @@ class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithC
 
     public function collection()
     {
-        return $this->users;
+        return collect($this->users);
     }
 }
