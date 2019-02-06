@@ -12,7 +12,8 @@
                         <a class="nav-link active" href="{{route('admin.sentences')}}">Sentences</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.export')}}">Export</a>
+                        {{--{{route('admin.export')}}--}}
+                        <a class="nav-link">Export</a>
                     </li>
                 </ul>
             </div>
