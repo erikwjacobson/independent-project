@@ -67,20 +67,11 @@ class AdminController extends Controller
      */
     public function export(Request $request)
     {
-        // Export based upon type
-        switch($request->type) {
-            case 'q':
-                $filename = 'question_' . Carbon::today()->toDateString(). '.xlsx';
-                return response()->download(storage_path("app/public/{$filename}"));
-            case 's':
-                $filename = 'sentence_' . Carbon::today()->toDateString(). '.xlsx';
-                return response()->download(storage_path("app/public/{$filename}"));
-            case 'c':
-                $filename = 'category_' . Carbon::today()->toDateString(). '.xlsx';
-                return response()->download(storage_path("app/public/{$filename}"));
-            default:
-                $filename = 'category_' . Carbon::today()->toDateString(). '.xlsx';
-                return response()->download(storage_path("app/public/{$filename}"));
+        $filename = 'question_' . Carbon::today()->toDateString(). '.xlsx';
+        if(file_exists(storage_path("app/public/{$filename}"))) {
+            return response()->download(storage_path("app/public/{$filename}"));
+        } else {
+            return redirect()->back();
         }
     }
 
@@ -97,11 +88,24 @@ class AdminController extends Controller
     }
 
     /**
+     * Export sentence information
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function exportSentences(Request $request)
+    {
+        $filename = 'sentence_' . Carbon::today()->toDateString(). '.xlsx';
+        return (new SentenceExport())->download($filename);
+    }
+
+    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function sentences()
     {
-        $sentences = Sentence::with(['emotion', 'style'])->get();
+        $sentences = Sentence::with(['emotion', 'style', 'records'])->get();
+
         return view('admin.sentence', compact('sentences'));
     }
 
@@ -113,8 +117,6 @@ class AdminController extends Controller
     public function buildExports()
     {
         (new QuestionExport())->queue('question_' . Carbon::today()->toDateString(). '.xlsx');
-//        (new CategoryExport())->queue('category_' . Carbon::today()->toDateString(). '.xlsx');
-        (new SentenceExport())->queue('sentence_' . Carbon::today()->toDateString(). '.xlsx');
 
         return redirect()->back();
     }

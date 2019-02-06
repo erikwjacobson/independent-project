@@ -22,64 +22,29 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
     use Exportable;
 
     public $sheet = [];
-    public $users;
-    public $records;
     public $sentences;
 
     public function __construct()
     {
-        $this->users = User::where('admin', false)->with('demographics')->get();
-        $this->records = Record::with('sentence')->get();
-        $this->sentences = Sentence::with('emotion', 'style')->get();
+        $this->sentences = Sentence::with('emotion', 'style', 'records')->get();
     }
 
     public function map($sentence): array
     {
-        $users = $this->users;
-        $records = $this->records->whereIn('user_id', $users->pluck('id'));
-
-        $sentenceRecords = $records->where('sentence_id', $sentence->id)->pluck('correct')->toArray();
-        $sentenceRecords = array_map(function ($item) {
-            return $item ? 1 : 0;
-        }, $sentenceRecords);
-
-        if (!empty($sentenceRecords)) {
-            $average = array_sum($sentenceRecords) / count($sentenceRecords);
-        } else {
-            $average = NULL;
-        }
-
         $this->sheet = [
             $sentence->text,
-            $average,
             $sentence->value,
             $sentence->style->name,
             $sentence->emotion->name,
-            $sentence->emotion_id,
+            $sentence->averageScore,
         ];
 
-        foreach($users as $user) {
-            $record = $records->where('user_id', $user->id)->where('sentence_id', $sentence->id)->first();
-
-            if ($record) {
-                $value = $record->answer;
-            }
-            else {
-                $value = "NA"; // Question not yet answered
-            }
-            array_push($this->sheet, $value);
-        }
         return $this->sheet;
     }
 
     public function headings(): array
     {
-        $users = $this->users;
-
-        $a = ['Sentence', 'Avg_Score', 'Sent_Value', 'Style', 'Emotion', 'Correct_Emotion'];
-        foreach ($users as $user) {
-            array_push($a, $user->username. '_answer');
-        }
+        $a = ['Sentence', 'Sent_Value', 'Style', 'Emotion', 'Avg_Score'];
 
         return $a;
     }
