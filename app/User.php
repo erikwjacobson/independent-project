@@ -86,20 +86,10 @@ class User extends Authenticatable
     public function computeScore($style, $emotion)
     {
         // Grab records and cache them for later use
-        $records = Cache::get('records');
-        $allSentences = Cache::get('sentences');
-        $allStyles = Cache::get('styles');
-        $allEmotions = Cache::get('emotions');
-
-        // Filter by this user
-        $userRecords = $records->where('user_id', $this->id);
-
-        // Get correct sentences
-        $sentences = $allSentences->where('style_id', $allStyles->where('name', $style)->first()->id)
-            ->where('emotion_id', $allEmotions->where('name', $emotion)->first()->id)->pluck('id');
+        $sentences = Sentence::where('style_id', $style->id)->where('emotion_id', $emotion->id)->pluck('id');
 
         // Get records with specified sentences
-        $recordsBySentence = $userRecords->whereIn('sentence_id', $sentences);
+        $recordsBySentence = $this->records()->whereIn('sentence_id', $sentences)->get();
 
         // Get correct records (where answer is equal to the sentence's emotion id)
         $correct = $recordsBySentence->filter(function($record) {

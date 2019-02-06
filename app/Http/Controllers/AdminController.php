@@ -67,23 +67,6 @@ class AdminController extends Controller
      */
     public function export(Request $request)
     {
-        // Grab records and cache them for later use
-        $records = Cache::remember('records', 60, function () {
-            return Record::with('sentence')->get();
-        });
-        $allSentences = Cache::remember('sentences', 60, function () {
-            return Sentence::with('emotion', 'style')->get();
-        });
-        $allStyles = Cache::remember('styles', 60, function() {
-            return Style::all();
-        });
-        $allEmotions = Cache::remember('emotions', 60, function() {
-            return Emotion::all();
-        });
-        $allUsers = Cache::remember('users', 60, function() {
-            return User::where('admin', false)->with('demographics')->get();
-        });
-
         // Export based upon type
         switch($request->type) {
             case 'q':
@@ -129,26 +112,6 @@ class AdminController extends Controller
      */
     public function buildExports()
     {
-        // Flush Cache
-        Cache::flush();
-
-        // Grab records and cache them for later use
-        $records = Cache::remember('records', 60, function () {
-            return Record::with('sentence')->get();
-        });
-        $allSentences = Cache::remember('sentences', 60, function () {
-            return Sentence::with('emotion', 'style')->get();
-        });
-        $allStyles = Cache::remember('styles', 60, function() {
-            return Style::all();
-        });
-        $allEmotions = Cache::remember('emotions', 60, function() {
-            return Emotion::all();
-        });
-        $allUsers = Cache::remember('users', 60, function() {
-            return User::where('admin', false)->get();
-        });
-
         (new QuestionExport())->queue('question_' . Carbon::today()->toDateString(). '.xlsx');
         (new CategoryExport())->queue('category_' . Carbon::today()->toDateString(). '.xlsx');
         (new SentenceExport())->queue('sentence_' . Carbon::today()->toDateString(). '.xlsx');
