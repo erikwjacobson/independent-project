@@ -96,7 +96,11 @@ class AdminController extends Controller
     public function exportSentences(Request $request)
     {
         $filename = 'sentence_' . Carbon::today()->toDateString(). '.xlsx';
-        return (new SentenceExport())->download($filename);
+        if(file_exists(storage_path("app/public/{$filename}"))) {
+            return response()->download(storage_path("app/public/{$filename}"));
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -104,9 +108,7 @@ class AdminController extends Controller
      */
     public function sentences()
     {
-        $sentences = Cache::remember('sentences', 60, function() {
-           return Sentence::with(['emotion', 'style', 'records'])->get()->each->append('averageScore');
-        });
+        $sentences = Sentence::with(['emotion', 'style', 'records'])->get();
         return view('admin.sentence', compact('sentences'));
     }
 
@@ -117,6 +119,7 @@ class AdminController extends Controller
      */
     public function buildExports()
     {
+        (new SentenceExport())->queue('sentence_' . Carbon::today()->toDateString(). '.xlsx');
         (new QuestionExport())->queue('question_' . Carbon::today()->toDateString(). '.xlsx');
 
         return redirect()->back();
