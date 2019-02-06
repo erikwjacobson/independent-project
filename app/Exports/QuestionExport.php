@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Demographic;
 use App\Emotion;
 use App\Record;
 use App\Style;
@@ -23,11 +24,23 @@ class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithS
     use Exportable;
 
     public $sheet = [];
+    protected $demographics;
+    protected $sentences;
+    protected $records;
+    protected $users;
+
+    public function __construct()
+    {
+        $this->sentences = Cache::get('sentences');
+        $this->records = Cache::get('records');
+        $this->users = Cache::get('users');
+        $this->demographics = Demographic::all();
+    }
 
     public function map($user): array
     {
-        $sentences = Cache::get('sentences');
-        $records = Cache::get('records');
+        $sentences = $this->sentences;
+        $records =  $this->records;
 
         $this->sheet = [
             $user->username,
@@ -49,16 +62,24 @@ class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithS
             }
             array_push($this->sheet, $value);
         }
+        foreach($user->demographics as $demographic) {
+            array_push($this->sheet, $demographic->value);
+        }
+
         return $this->sheet;
     }
 
     public function headings(): array
     {
-        $sentences = Cache::get('sentences');
+        $sentences = $this->sentences;
 
         $a = ['User'];
         foreach($sentences as $index => $sentence) {
             array_push($a, 'Q' . ($index + 1) . ' - ' . $sentence->text);
+        }
+
+        foreach($this->demographics as $demographic) {
+            array_push($a, $demographic->name);
         }
 
         return $a;
@@ -66,6 +87,6 @@ class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function collection()
     {
-        return Cache::get('users');
+        return $this->users;
     }
 }

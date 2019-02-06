@@ -21,11 +21,21 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
     use Exportable;
 
     public $sheet = [];
+    protected $users;
+    protected $records;
+    protected $sentences;
+
+    public function __construct()
+    {
+        $this->users = Cache::get('users');
+        $this->records = Cache::get('records');
+        $this->sentences = Cache::get('sentences');
+    }
 
     public function map($sentence): array
     {
-        $users = Cache::get('users');
-        $records = Cache::get('records')->whereIn('user_id', $users->pluck('id'));
+        $users = $this->users;
+        $records = $this->records->whereIn('user_id', $users->pluck('id'));
 
         $sentenceRecords = $records->where('sentence_id', $sentence->id)->pluck('correct')->toArray();
         $sentenceRecords = array_map(function ($item) {
@@ -63,7 +73,7 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function headings(): array
     {
-        $users = Cache::get('users');
+        $users = $this->users;
 
         $a = ['Sentence', 'Avg_Score', 'Sent_Value', 'Style', 'Emotion', 'Correct_Emotion'];
         foreach ($users as $user) {
@@ -75,6 +85,6 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function collection()
     {
-        return Cache::get('sentences');
+        return $this->sentences;
     }
 }
