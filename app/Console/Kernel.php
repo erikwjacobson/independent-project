@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function() {
             (new SentenceExport())->queue('sentence_' . Carbon::today()->toDateString(). '.xlsx');
-            (new QuestionExport())->queue('question_' . Carbon::today()->toDateString(). '.xlsx');
+//            (new QuestionExport())->queue('question_' . Carbon::today()->toDateString(). '.xlsx');
         })->everyMinute();
     }
 
