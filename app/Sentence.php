@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Sentence extends Model
 {
     /**
+     * Appends
+     * @var array
+     */
+    protected $appends = ['averageScore'];
+
+    /**
      * Each sentence has one style
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -34,5 +40,23 @@ class Sentence extends Model
     public function records()
     {
         return $this->hasMany(Record::class, 'sentence_id', 'id');
+    }
+
+    /**
+     * Returns the aver
+     * @return mixed
+     */
+    public function averageScore()
+    {
+        return $this->records()->get()->pluck('correct')->average();
+    }
+
+    /**
+     * Average score attribute
+     * @return mixed
+     */
+    public function getAverageScoreAttribute()
+    {
+        return $this->averageScore();
     }
 }
