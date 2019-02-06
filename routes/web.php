@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/admin/export', 'AdminController@exportPage')->name('admin.export');
         Route::post('/admin/export', 'AdminController@export')->name('admin.export.data');
         Route::post('/admin/export/users', 'AdminController@exportUsers')->name('admin.export.users');
-        Route::post('/admin/cache', 'AdminController@clearCache')->name('admin.cache');
+        Route::post('/admin/export/build', 'AdminController@buildExports')->name('admin.build.export');
         Route::post('/admin/store', 'AdminController@storeUserData')->name('admin.store');
     });
 });

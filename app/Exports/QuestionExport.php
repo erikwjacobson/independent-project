@@ -24,10 +24,10 @@ class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithS
     use Exportable;
 
     public $sheet = [];
-    protected $demographics;
-    protected $sentences;
-    protected $records;
-    protected $users;
+    public $demographics;
+    public $sentences;
+    public $records;
+    public $users;
 
     public function __construct()
     {

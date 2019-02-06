@@ -88,16 +88,16 @@ class AdminController extends Controller
         switch($request->type) {
             case 'q':
                 $filename = 'question_' . Carbon::today()->toDateString(). '.xlsx';
-                return (new QuestionExport())->download($filename);
+                return response()->download(storage_path("app/public/{$filename}"));
             case 's':
                 $filename = 'sentence_' . Carbon::today()->toDateString(). '.xlsx';
-                return (new SentenceExport())->download($filename);
+                return response()->download(storage_path("app/public/{$filename}"));
             case 'c':
                 $filename = 'category_' . Carbon::today()->toDateString(). '.xlsx';
-                return (new CategoryExport())->download($filename);
+                return response()->download(storage_path("app/public/{$filename}"));
             default:
                 $filename = 'category_' . Carbon::today()->toDateString(). '.xlsx';
-                return (new CategoryExport())->download($filename);
+                return response()->download(storage_path("app/public/{$filename}"));
         }
     }
 
@@ -127,7 +127,7 @@ class AdminController extends Controller
      * Here is where you can do that.
      *
      */
-    public function clearCache()
+    public function buildExports()
     {
         // Flush Cache
         Cache::flush();
@@ -148,6 +148,10 @@ class AdminController extends Controller
         $allUsers = Cache::remember('users', 60, function() {
             return User::where('admin', false)->get();
         });
+
+        (new QuestionExport())->queue('question_' . Carbon::today()->toDateString(). '.xlsx');
+        (new CategoryExport())->queue('category_' . Carbon::today()->toDateString(). '.xlsx');
+        (new SentenceExport())->queue('sentence_' . Carbon::today()->toDateString(). '.xlsx');
 
         return redirect()->back();
     }

@@ -21,9 +21,9 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
     use Exportable;
 
     public $sheet = [];
-    protected $users;
-    protected $records;
-    protected $sentences;
+    public $users;
+    public $records;
+    public $sentences;
 
     public function __construct()
     {

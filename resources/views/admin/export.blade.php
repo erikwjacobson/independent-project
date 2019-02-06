@@ -16,13 +16,13 @@
                 </ul>
             </div>
             <div class="col-md-2 text-right">
-                {!! Form::open(['route' => ['admin.cache'], 'method' => 'POST']) !!}
+                {!! Form::open(['route' => ['admin.build.export'], 'method' => 'POST']) !!}
                 <button id="clearCache" type="submit"
                         class="btn btn-danger"
                         data-toggle="tooltip"
                         data-placement="right"
                         title="Click this button if there are missing users in the data export file.">
-                    Clear Cache
+                    Build Exports
                 </button>
                 {!! Form::close() !!}
             </div>
