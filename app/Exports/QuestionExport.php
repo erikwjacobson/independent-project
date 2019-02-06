@@ -47,22 +47,34 @@ class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithS
             $user->username,
         ];
 
+        /**
+         * Each Sentence Answer an Correctness
+         */
         foreach($sentences as $sentence) {
             $record = $records->where('user_id', $user->id)->where('sentence_id', $sentence->id)->first();
 
             if ($record) {
                 if ($record->answer == 0) {
-                    $value = 9; // Signals that the question timed out
+                    $userScore = 9; // Signals that the question timed out
                 } else {
                     // Gives value of 1 if correct and 0 if incorrect
-                    $value = $record->answer == $sentence->emotion_id ? 1 : 0;
+                    $userScore = $record->answer == $sentence->emotion_id ? 1 : 0;
+
+                    // Gives their actual answer
+                    $answer = $record->answer;
                 }
             }
             else {
-                $value = "NA"; // Question not yet answered
+                $userScore = "NA"; // Question not yet answered
+                $answer = "NA";
             }
-            array_push($this->sheet, $value);
+            array_push($this->sheet, $userScore);
+            array_push($this->sheet, $answer);
         }
+
+        /**
+         * Demographic Info
+         */
         foreach($user->demographics as $demographic) {
             array_push($this->sheet, $demographic->value);
         }
@@ -76,7 +88,8 @@ class QuestionExport implements FromCollection, WithMapping, WithHeadings, WithS
 
         $a = ['User'];
         foreach($sentences as $index => $sentence) {
-            array_push($a, 'Q' . ($index + 1) . ' - ' . $sentence->text);
+            array_push($a, 'Q' . ($index + 1) . '_"' . $sentence->text . '"_CORRECT');
+            array_push($a, 'Q' . ($index + 1) . '_"' . $sentence->text . '"_ANSWER');
         }
 
         foreach($this->demographics as $demographic) {

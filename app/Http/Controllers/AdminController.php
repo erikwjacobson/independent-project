@@ -68,20 +68,8 @@ class AdminController extends Controller
     public function export(Request $request)
     {
         // Export based upon type
-        switch($request->type) {
-            case 'q':
-                $filename = 'question_' . Carbon::today()->toDateString(). '.xlsx';
-                return response()->download(storage_path("app/public/{$filename}"));
-            case 's':
-                $filename = 'sentence_' . Carbon::today()->toDateString(). '.xlsx';
-                return response()->download(storage_path("app/public/{$filename}"));
-            case 'c':
-                $filename = 'category_' . Carbon::today()->toDateString(). '.xlsx';
-                return response()->download(storage_path("app/public/{$filename}"));
-            default:
-                $filename = 'category_' . Carbon::today()->toDateString(). '.xlsx';
-                return response()->download(storage_path("app/public/{$filename}"));
-        }
+        $filename = 'question_' . Carbon::today()->toDateString(). '.xlsx';
+        return response()->download(storage_path("app/public/{$filename}"));
     }
 
     /**
@@ -112,9 +100,8 @@ class AdminController extends Controller
      */
     public function buildExports()
     {
+
         (new QuestionExport())->queue('question_' . Carbon::today()->toDateString(). '.xlsx');
-//        (new CategoryExport())->queue('category_' . Carbon::today()->toDateString(). '.xlsx');
-        (new SentenceExport())->queue('sentence_' . Carbon::today()->toDateString(). '.xlsx');
 
         return redirect()->back();
     }

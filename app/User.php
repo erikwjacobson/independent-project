@@ -67,16 +67,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the user's score
-     *
-     * @return float|int
-     */
-    public function getScoreAttribute()
-    {
-        return $this->computeScore();
-    }
-
-    /**
      * Compute the score for the given style and emotion
      *
      * @param string $style
