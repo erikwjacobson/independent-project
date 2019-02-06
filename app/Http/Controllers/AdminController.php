@@ -104,7 +104,9 @@ class AdminController extends Controller
      */
     public function sentences()
     {
-        $sentences = Sentence::with(['emotion', 'style', 'records'])->get();
+        $sentences = Cache::remember('sentences', 60, function() {
+           return Sentence::with(['emotion', 'style', 'records'])->get()->each->append('averageScore');
+        });
         return view('admin.sentence', compact('sentences'));
     }
 
