@@ -26,7 +26,7 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function __construct()
     {
-        $this->sentences = Cache::get('sentences');
+        $this->sentences = Sentence::with(['emotion', 'style', 'records'])->get();
     }
 
     public function map($sentence): array
