@@ -81,7 +81,7 @@ class AdminController extends Controller
             return Emotion::all();
         });
         $allUsers = Cache::remember('users', 60, function() {
-            return User::where('admin', false)->get();
+            return User::where('admin', false)->with('demographics')->get();
         });
 
         // Export based upon type

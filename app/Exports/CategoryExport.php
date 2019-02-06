@@ -22,11 +22,21 @@ class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithC
     use Exportable;
 
     public $sheet = [];
+    protected $styles;
+    protected $emotions;
+    protected $users;
+
+    public function __construct()
+    {
+        $this->styles = Cache::get('styles');
+        $this->emotions = Cache::get('emotions');
+        $this->users = Cache::get('users');
+    }
 
     public function map($user): array
     {
-        $styles = Cache::get('styles');
-        $emotions = Cache::get('emotions');
+        $styles = $this->styles;
+        $emotions = $this->emotions;
         $this->sheet = [
             $user->username,
             $user->complete,
@@ -73,6 +83,6 @@ class CategoryExport implements FromCollection, WithMapping, WithHeadings, WithC
 
     public function collection()
     {
-        return Cache::get('users');
+        return $this->users;
     }
 }
