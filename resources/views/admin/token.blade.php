@@ -32,6 +32,12 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
+                                <a class="btn btn-danger btn-sm" href="{{route('admin.api.info')}}"><&nbsp;&nbsp;Back</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="alert alert-warning" role="alert">
                                     Copy and paste the API key below to use for your application. This is the
                                     only time you will have access to this key. Keys expire after 15 days.

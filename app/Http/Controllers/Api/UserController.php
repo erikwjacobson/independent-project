@@ -32,7 +32,7 @@ class UserController extends Controller
 
     /**
      * Single User
-     * 
+     *
      * @param User $user
      * @return User
      */
