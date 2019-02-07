@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.dashboard')}}">Dashboard</a>
@@ -11,20 +11,13 @@
                         <a class="nav-link" href="{{route('admin.sentences')}}">Sentences</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{route('admin.export')}}">Export</a>
+                        {{--href="{{route('admin.api.info')}}"--}}
+                        <a class="nav-link active"
+                           data-toggle="tooltip"
+                           data-placement="right"
+                           title="Under Construction" >API</a>
                     </li>
                 </ul>
-            </div>
-            <div class="col-md-2 text-right">
-                {!! Form::open(['route' => ['admin.build.export'], 'method' => 'POST']) !!}
-                <button id="clearCache" type="submit"
-                        class="btn btn-danger"
-                        data-toggle="tooltip"
-                        data-placement="right"
-                        title="Click this button if there are missing users in the data export file.">
-                    Build Exports
-                </button>
-                {!! Form::close() !!}
             </div>
         </div>
         <br>
@@ -39,13 +32,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        {!! Form::open(['route' => ['admin.export.data'], 'method' => 'POST', 'id' => 'exportForm']) !!}
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-lg btn-success">Export</button>
-                            </div>
-                        </div>
-                        {!! Form::close() !!}
+                        <p>Under Construction</p>
                     </div>
                 </div>
             </div>

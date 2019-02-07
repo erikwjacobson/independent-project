@@ -34,9 +34,9 @@ class AdminController extends Controller
      * Returns the Export Page
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function exportPage()
+    public function apiInfo()
     {
-        return view('admin.export');
+        return view('admin.api');
     }
 
     /**
@@ -60,22 +60,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Exports data
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\BinaryFileResponse
-     */
-    public function export(Request $request)
-    {
-        $filename = 'question_' . Carbon::today()->toDateString(). '.xlsx';
-        if(file_exists(storage_path("app/public/{$filename}"))) {
-            return response()->download(storage_path("app/public/{$filename}"));
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    /**
      * Export user information
      *
      * @param Request $request
@@ -96,11 +80,11 @@ class AdminController extends Controller
     public function exportSentences(Request $request)
     {
         $filename = 'sentence_' . Carbon::today()->toDateString(). '.xlsx';
-        if(file_exists(storage_path("app/public/{$filename}"))) {
-            return response()->download(storage_path("app/public/{$filename}"));
-        } else {
-            return redirect()->back();
-        }
+        $sentences = Cache::remember('sentences', 60, function() {
+            // TODO Make Laravel resource for this.
+            return $sens = Sentence::with(['emotion', 'style', 'records'])->get();
+        });
+        return (new SentenceExport($sentences))->download($filename);
     }
 
     /**

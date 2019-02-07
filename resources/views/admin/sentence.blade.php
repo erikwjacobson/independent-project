@@ -12,7 +12,11 @@
                         <a class="nav-link active" href="{{route('admin.sentences')}}">Sentences</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.export')}}">Export</a>
+                        {{--href="{{route('admin.api.info')}}"--}}
+                        <a class="nav-link"
+                           data-toggle="tooltip"
+                           data-placement="right"
+                           title="Under Construction">API</a>
                     </li>
                 </ul>
             </div>
