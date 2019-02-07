@@ -12,11 +12,7 @@
                         <a class="nav-link" href="{{route('admin.sentences')}}">Sentences</a>
                     </li>
                     <li class="nav-item">
-                        {{--href="{{route('admin.api.info')}}"--}}
-                        <a class="nav-link"
-                           data-toggle="tooltip"
-                           data-placement="right"
-                           title="Under Construction">API</a>
+                        <a class="nav-link" href="{{route('admin.api.info')}}">API</a>
                     </li>
                 </ul>
             </div>

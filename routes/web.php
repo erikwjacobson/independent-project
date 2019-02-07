@@ -45,10 +45,13 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'admin'], function() {
         Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
         Route::get('/admin/sentences', 'AdminController@sentences')->name('admin.sentences');
-        Route::get('/admin/api', 'AdminController@apiInfo')->name('admin.api.info');
         Route::post('/admin/export/users', 'AdminController@exportUsers')->name('admin.export.users');
         Route::post('/admin/export/sentences', 'AdminController@exportSentences')->name('admin.export.sentences');
         Route::post('/admin/store', 'AdminController@storeUserData')->name('admin.store');
+
+        // API Setup routes
+        Route::get('/admin/api', 'AdminController@apiInfo')->name('admin.api.info');
+        Route::get('/admin/api/token', 'AdminController@generateToken')->name('admin.api.token');
     });
 });
 
