@@ -20,7 +20,7 @@ class User extends JsonResource
             'admin' => $this->admin,
             'practice_questions_completed' => $this->practice_questions_completed,
             'computer' => $this->computer,
-            'researcher' => $this->researcher,
+            'researcher' => $this->researcher_initials,
             'overtime' => $this->overtime,
             'credit_granted' => $this->credit_granted,
             'progress' => $this->progress,
