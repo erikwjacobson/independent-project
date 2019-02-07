@@ -2,20 +2,11 @@
 
 namespace App\Exports;
 
-use App\Record;
-use App\Sentence;
-use App\User;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
-use Maatwebsite\Excel\Events\BeforeSheet;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithStrictNullComparison
 {
@@ -24,9 +15,9 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
     public $sheet = [];
     public $sentences;
 
-    public function __construct()
+    public function __construct($sentences)
     {
-        $this->sentences = Sentence::with(['emotion', 'style', 'records'])->get();
+        $this->sentences = $sentences;
     }
 
     public function map($sentence): array
@@ -35,6 +26,7 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
             $sentence->text,
             $sentence->value,
             $sentence->style->name,
+            $sentence->style->id,
             $sentence->emotion->name,
             $sentence->averageScore,
         ];
@@ -44,7 +36,7 @@ class SentenceExport implements FromCollection, WithMapping, WithHeadings, WithS
 
     public function headings(): array
     {
-        $a = ['Sentence', 'Sent_Value', 'Style', 'Emotion', 'Avg_Score'];
+        $a = ['Sentence', 'Sent_Value', 'Style', 'Style_Dummy_Var', 'Emotion', 'Avg_Score'];
 
         return $a;
     }

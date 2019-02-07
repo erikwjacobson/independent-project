@@ -28,10 +28,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function() {
-            (new SentenceExport())->queue('sentence_' . Carbon::today()->toDateString(). '.xlsx');
-//            (new QuestionExport())->queue('question_' . Carbon::today()->toDateString(). '.xlsx');
-        })->everyMinute();
+        // Scheduler
     }
 
     /**
