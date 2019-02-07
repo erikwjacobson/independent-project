@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User as UserResource;
+
 
 class UserController extends Controller
 {
@@ -19,13 +21,11 @@ class UserController extends Controller
     }
 
     /**
-     * All Users
-     *
-     * @return User[]|\Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        $users = User::all();
+        $users = UserResource::collection(User::all());
 
         return $users;
     }
