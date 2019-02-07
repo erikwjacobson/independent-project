@@ -37,7 +37,7 @@ class AdminController extends Controller
      */
     public function apiInfo()
     {
-        return view('admin.api', compact('token'));
+        return view('admin.api');
     }
 
     /**
