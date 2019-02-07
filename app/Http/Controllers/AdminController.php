@@ -13,6 +13,7 @@ use App\Exports\CategoryExport;
 use App\Exports\QuestionExport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -36,7 +37,7 @@ class AdminController extends Controller
      */
     public function apiInfo()
     {
-        return view('admin.api');
+        return view('admin.api', compact('token'));
     }
 
     /**
@@ -97,15 +98,15 @@ class AdminController extends Controller
     }
 
     /**
-     * Administrators might need to clear the cache to update the export.
-     * Here is where you can do that.
+     * Generate the API Token
      *
+     * @return mixed
      */
-    public function buildExports()
+    public function generateToken()
     {
-        (new SentenceExport())->queue('sentence_' . Carbon::today()->toDateString(). '.xlsx');
-        (new QuestionExport())->queue('question_' . Carbon::today()->toDateString(). '.xlsx');
+        $user = Auth::user();
+        $token = $user->createToken('Personal')->accessToken;
 
-        return redirect()->back();
+        return view('admin.token', compact('token'));
     }
 }
