@@ -25,7 +25,7 @@ class User extends JsonResource
             'credit_granted' => $this->credit_granted,
             'progress' => $this->progress,
             'comments' => $this->comments,
-            'records' => $this->records()->with('sentence.emotion', 'sentence.style')->get()->each->append('correct'),
+            'records' => $this->records()->with('sentence.emotion', 'sentence.style')->get(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
