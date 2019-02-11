@@ -66,7 +66,7 @@
                                                           title="User has completed the study"></span>
                                                 @else
                                                     <span class="oi oi-circle-x text-danger"
-                                                          title="User has completed {{$participant->progress}}% of the study"></span>
+                                                          title="User has completed {{rount($participant->progress, 2)}}% of the study"></span>
                                                 @endif
                                             </td>
                                             <td>
