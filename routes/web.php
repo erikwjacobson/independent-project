@@ -48,6 +48,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/admin/export/users', 'AdminController@exportUsers')->name('admin.export.users');
         Route::post('/admin/export/sentences', 'AdminController@exportSentences')->name('admin.export.sentences');
         Route::post('/admin/store', 'AdminController@storeUserData')->name('admin.store');
+        Route::get('/admin/notebooks/{notebook}', function($notebook) {
+            return view('notebooks.' . $notebook);
+        })->name('admin.notebooks');
 
         // API Setup routes
         Route::get('/admin/api', 'AdminController@apiInfo')->name('admin.api.info');
