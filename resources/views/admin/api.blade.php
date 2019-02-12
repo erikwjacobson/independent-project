@@ -13,6 +13,16 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{route('admin.api.info')}}">API</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+                           href="#"
+                           role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">Notebooks</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{route('admin.notebooks', ['notebook' => 'EmotionAnalysis'])}}">EmotionAnalysis</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

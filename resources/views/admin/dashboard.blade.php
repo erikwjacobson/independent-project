@@ -14,14 +14,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.api.info')}}">API</a>
                     </li>
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notebooksMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Notebooks
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="notebooksMenuButton">
-                                <a class="dropdown-item" href="{{route('admin.notebooks', ['notebook' => 'EmotionAnalysis'])}}">Action</a>
-                            </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+                           href="#"
+                           role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">Notebooks</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{route('admin.notebooks', ['notebook' => 'EmotionAnalysis'])}}">EmotionAnalysis</a>
                         </div>
                     </li>
                 </ul>
@@ -108,11 +108,4 @@
             </div>
         </div>
     </div>
-@endsection
-@section('scripts')
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        });
-    </script>
 @endsection
