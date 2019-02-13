@@ -13237,7 +13237,7 @@ The server didn&#39;t respond. Using backup JSON data for now. Get a new key to 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##</span>
@@ -13286,46 +13286,43 @@ The server didn&#39;t respond. Using backup JSON data for now. Get a new key to 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Reformatting-user's-answers-to-questions">Reformatting user's answers to questions<a class="anchor-link" href="#Reformatting-user's-answers-to-questions">&#182;</a></h2><p>Now that we have all of the users in their own excel sheet, I need to generate columns for every question on the application that indicate whether or not they answered the question correctly. This requires a bit of reformatting due to the structure of the JSON response...</p>
+<h2 id="Reformatting-user's-answers-to-questions">Reformatting user's answers to questions<a class="anchor-link" href="#Reformatting-user's-answers-to-questions">&#182;</a></h2><p>Now that we have all of the users in their own excel sheet, I need to generate two sheets that contain columns for every question on the application, with one sheet's values indicating whether or not they answered the question correctly, and the other sheet's values indicating the answer they actually gave. This requires a bit of reformatting due to the structure of the JSON response...</p>
 <p>The JSON object looks a bit similar to this:</p>
 <div class="highlight"><pre><span></span><span class="p">[</span>
     <span class="p">{</span>
         <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;erik&quot;</span><span class="p">,</span>
-        <span class="err">...</span>
         <span class="err">records:</span> <span class="err">[</span>
             <span class="err">{</span>
                 <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
                 <span class="nt">&quot;correct&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
                 <span class="nt">&quot;sentence&quot;</span><span class="p">:</span> <span class="p">[</span>
-                    <span class="s2">&quot;text&quot;</span><span class="err">:</span> <span class="s2">&quot;wat do u mean&quot;</span><span class="p">,</span>
-                    <span class="err">...</span>
+                    <span class="s2">&quot;text&quot;</span><span class="err">:</span> <span class="s2">&quot;wat do u mean&quot;</span><span class="p">,</span>   
                 <span class="p">]</span>
-                <span class="err">...</span>
             <span class="p">}</span>
         <span class="p">]</span>
     <span class="err">},</span>
-    <span class="err">...</span>
 <span class="err">],</span>
 </pre></div>
-<p>I've only included the data I need in this example, since this sheet in the document will contain one column for each <code>record</code>, with the sentence text as the column header and the "correct" attribute for the value in that column. In order to do this, I need to accomplish a few things:</p>
+<p>I've only included the data I need in the above JSON example, since this sheet in the document will contain one column for each <code>record</code>, with the sentence text as the column header and the correct attribute for the value in that column. In order to do this, I need to accomplish a few things:</p>
 
-<pre><code>1. I need to gather the records for each user in a dataframe 
-2. I need to pivot those records so that the sentence text value is the column header and the values are the correctness
-3. I need to append the pivoted records to the end of each user row so that each row contains each question and whether or not the user got it correct.
-4. I need to filter out all of the users that didn't finish each sentence
-5. I need to reorder the columns so that the sentences are at the end.</code></pre>
+<pre><code>1. I need to filter out all of the users that didn't finish each sentence
+2. I need to gather the records for each user in a dataframe 
+3. I need to pivot those records so that the sentence text value is the column header and the values are the correctness
+4. I need to append the pivoted records to the end of each user row so that each row contains each question and the intended value.
+5. I need to reorder the columns</code></pre>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Generate final DF to be exported to excel</span>
-<span class="n">final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">finalCorrect</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">finalAnswer</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
 <span class="c1"># Define the necessary columns</span>
 <span class="n">recordColumns</span> <span class="o">=</span> <span class="p">([</span>
@@ -13336,34 +13333,40 @@ The server didn&#39;t respond. Using backup JSON data for now. Get a new key to 
 <span class="p">])</span>
 
 <span class="c1"># For each user</span>
-<span class="c1">#   Step 1. Gather the records</span>
-<span class="c1">#   Step 2. Pivot the dataframe so that the columns become individual sentence text and the user&#39;s answers become the row</span>
-<span class="c1">#   Step 3. Join the pivoted dataframe to the old users dataframe</span>
+<span class="c1">#   Step 2. Gather the records</span>
+<span class="c1">#   Step 3. Pivot the dataframe so that the columns become individual sentence text and the user&#39;s answers become the row</span>
+<span class="c1">#   Step 4. Join the pivoted dataframe to the old users dataframe</span>
 <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-    
-    <span class="c1"># (Step 1) Gather records in wanted format</span>
+    <span class="c1"># (Step 1) Skip all users that haven&#39;t completed every question</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;progress&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">100</span><span class="p">):</span>
+        <span class="k">continue</span>
+        
+    <span class="c1"># (Step 2) Gather records in wanted format</span>
     <span class="n">records</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;records&#39;</span><span class="p">])</span> 
     <span class="n">recordsFrame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">recordColumns</span><span class="p">)</span>
+    
     <span class="c1"># Change correct (boolean type) to integer</span>
     <span class="n">recordsFrame</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recordsFrame</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     
-    <span class="c1"># (Step 2) Pivot to create a column for each sentence</span>
-    <span class="n">recordsFrame</span> <span class="o">=</span> <span class="n">recordsFrame</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;sentence.text&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;correct&#39;</span><span class="p">)</span>
+    <span class="c1"># (Step 3) Pivot to create a column for each sentence</span>
+    <span class="n">recordsCorrectFrame</span> <span class="o">=</span> <span class="n">recordsFrame</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;sentence.text&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;correct&#39;</span><span class="p">)</span>
+    <span class="n">recordsAnswerFrame</span> <span class="o">=</span> <span class="n">recordsFrame</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;sentence.text&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;answer&#39;</span><span class="p">)</span>
     
-    <span class="c1"># (Step 3) Append recordsFrame to the final product</span>
-    <span class="n">final</span> <span class="o">=</span> <span class="n">final</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">recordsFrame</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;user_id&#39;</span><span class="p">),</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># (Step 4) Append recordsFrame to the final product</span>
+    <span class="n">finalCorrect</span> <span class="o">=</span> <span class="n">finalCorrect</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">recordsCorrectFrame</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;user_id&#39;</span><span class="p">),</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">finalAnswer</span> <span class="o">=</span> <span class="n">finalAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">recordsAnswerFrame</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
-    
-<span class="c1"># (Step 4) Remove items where participant did not finish each question</span>
-<span class="n">final</span> <span class="o">=</span> <span class="n">final</span><span class="p">[</span><span class="n">final</span><span class="o">.</span><span class="n">progress</span><span class="o">==</span><span class="mi">100</span><span class="p">]</span>
-    
+
 <span class="c1"># (Step 5) Reorder columns</span>
 <span class="n">updatedColumns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="n">updatedColumns</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">recordsFrame</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
-<span class="n">final</span> <span class="o">=</span> <span class="n">final</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">updatedColumns</span><span class="p">)</span>
+<span class="n">updatedColumns</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">recordsAnswerFrame</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+
+<span class="n">finalCorrect</span> <span class="o">=</span> <span class="n">finalCorrect</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">updatedColumns</span><span class="p">)</span>
+<span class="n">finalAnswer</span> <span class="o">=</span> <span class="n">finalAnswer</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">updatedColumns</span><span class="p">)</span>
 
 <span class="c1"># Export to excel</span>
-<span class="n">final</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">excel</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sentence_Correct&#39;</span><span class="p">)</span>
+<span class="n">finalCorrect</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">excel</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sentence_Correct&#39;</span><span class="p">)</span>
+<span class="n">finalAnswer</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">excel</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sentence_Answer&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13419,7 +13422,7 @@ The server didn&#39;t respond. Using backup JSON data for now. Get a new key to 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">recordColumns</span> <span class="o">=</span> <span class="p">([</span>
