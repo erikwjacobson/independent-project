@@ -13152,7 +13152,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##</span>
@@ -13175,7 +13175,7 @@ div#notebook {
 <span class="k">if</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">):</span> <span class="c1"># If not successful</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The server didn</span><span class="se">\&#39;</span><span class="s1">t respond. Using backup JSON data for now. </span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The server didn</span><span class="se">\&#39;</span><span class="s1">t respond. Using backup JSON data for now.&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Get a new key to access the new data.&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span> <span class="c1"># If successful</span>
     <span class="c1"># Write the JSON to a data file</span>
@@ -13201,9 +13201,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>401
-{&#34;message&#34;:&#34;Unauthenticated.&#34;}
-The server didn&#39;t respond. Using backup JSON data for now. Get a new key to access the new data.
+<pre>Successfully downloaded User data from https://emotion.ewjresearch.com/
 </pre>
 </div>
 </div>
@@ -13237,7 +13235,7 @@ The server didn&#39;t respond. Using backup JSON data for now. Get a new key to 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##</span>
@@ -13292,17 +13290,19 @@ The server didn&#39;t respond. Using backup JSON data for now. Get a new key to 
     <span class="p">{</span>
         <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;erik&quot;</span><span class="p">,</span>
-        <span class="err">records:</span> <span class="err">[</span>
-            <span class="err">{</span>
+        <span class="nt">&quot;records&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
                 <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
                 <span class="nt">&quot;correct&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
                 <span class="nt">&quot;sentence&quot;</span><span class="p">:</span> <span class="p">[</span>
-                    <span class="s2">&quot;text&quot;</span><span class="err">:</span> <span class="s2">&quot;wat do u mean&quot;</span><span class="p">,</span>   
+                    <span class="p">{</span>
+                        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;wat do u mean&quot;</span>   
+                    <span class="p">}</span>
                 <span class="p">]</span>
             <span class="p">}</span>
         <span class="p">]</span>
-    <span class="err">},</span>
-<span class="err">],</span>
+    <span class="p">}</span>
+<span class="p">]</span>
 </pre></div>
 <p>I've only included the data I need in the above JSON example, since this sheet in the document will contain one column for each <code>record</code>, with the sentence text as the column header and the correct attribute for the value in that column. In order to do this, I need to accomplish a few things:</p>
 
@@ -13317,7 +13317,7 @@ The server didn&#39;t respond. Using backup JSON data for now. Get a new key to 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Generate final DF to be exported to excel</span>
@@ -13422,7 +13422,7 @@ The server didn&#39;t respond. Using backup JSON data for now. Get a new key to 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">recordColumns</span> <span class="o">=</span> <span class="p">([</span>
@@ -13519,6 +13519,19 @@ The server didn&#39;t respond. Using backup JSON data for now. Get a new key to 
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 
