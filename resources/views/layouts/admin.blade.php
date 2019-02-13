@@ -21,6 +21,7 @@
                            aria-expanded="false">Notebooks</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{route('admin.notebooks', ['notebook' => 'data-aggregation'])}}">Data Aggregation</a>
+                            <a class="dropdown-item" href="{{route('admin.notebooks', ['notebook' => 'emotion-analysis'])}}">Emotion Analysis</a>
                         </div>
                     </li>
                 </ul>
