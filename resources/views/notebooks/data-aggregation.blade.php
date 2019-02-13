@@ -13152,7 +13152,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##</span>
@@ -13235,7 +13235,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##</span>
@@ -13317,7 +13317,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Generate final DF to be exported to excel</span>
@@ -13354,7 +13354,7 @@ div#notebook {
     
     <span class="c1"># (Step 4) Append recordsFrame to the final product</span>
     <span class="n">finalCorrect</span> <span class="o">=</span> <span class="n">finalCorrect</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">recordsCorrectFrame</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;user_id&#39;</span><span class="p">),</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">finalAnswer</span> <span class="o">=</span> <span class="n">finalAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">recordsAnswerFrame</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="n">finalAnswer</span> <span class="o">=</span> <span class="n">finalAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">recordsAnswerFrame</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;user_id&#39;</span><span class="p">),</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
 
 <span class="c1"># (Step 5) Reorder columns</span>
@@ -13422,7 +13422,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">recordColumns</span> <span class="o">=</span> <span class="p">([</span>
@@ -13519,19 +13519,6 @@ div#notebook {
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
 
