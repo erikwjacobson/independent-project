@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>EmotionAnalysis</title>
+<title>data-aggregation</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13129,8 +13129,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Analysis-for-the-&quot;Interpreting-Emotion-in-Messages&quot;-Study">Analysis for the "Interpreting Emotion in Messages" Study<a class="anchor-link" href="#Analysis-for-the-&quot;Interpreting-Emotion-in-Messages&quot;-Study">&#182;</a></h1><ul>
-<li>Project and data analysis by Erik Jacobson</li>
+<h1 id="Data-Aggregation-for-the-&quot;Interpreting-Emotion-in-Messages&quot;-Study">Data Aggregation for the "Interpreting Emotion in Messages" Study<a class="anchor-link" href="#Data-Aggregation-for-the-&quot;Interpreting-Emotion-in-Messages&quot;-Study">&#182;</a></h1><ul>
+<li>Project and code written by Erik Jacobson</li>
 </ul>
 <hr>
 </div>
