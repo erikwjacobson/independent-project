@@ -26,7 +26,7 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
-        $participants = User::where('admin', false)->orderBy('created_at')->with('records')->get();
+        $participants = User::where('admin', false)->orderBy('created_at', 'DESC')->with('records')->get();
 
         return view('admin.dashboard', compact('participants'));
     }
