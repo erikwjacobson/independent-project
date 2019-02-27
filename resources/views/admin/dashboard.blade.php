@@ -6,17 +6,13 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-8">
                             Administrator Dashboard
                         </div>
                         <div class="col-md-2">
                             <b>Total Participants:</b>&nbsp;{{$participants->count()}}
                         </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12 text-right">
+                        <div class="col-md-2 text-right">
                             {!! Form::open(['route' => ['admin.export.users'], 'method' => 'POST']) !!}
                             <button type="submit" class="btn btn-success"
                                     title="Download user information into an excel spreadsheet">Download
@@ -24,10 +20,17 @@
                             {!! Form::close() !!}
                         </div>
                     </div>
-                    <br>
+                </div>
+                <div class="card-body">
                     {!! Form::open(['route' => ['admin.store'], 'method' => 'POST']) !!}
                     <div class="row">
                         <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                </div>
+                            </div>
+                            <br>
                             <table class="table table-bordered">
                                 <tr class="fixed">
                                     <th class="fixed-header">User</th>
@@ -67,12 +70,6 @@
                                     </tr>
                                 @endforeach
                             </table>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12 text-right">
-                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                                </div>
-                            </div>
                             {!! Form::close() !!}
                         </div>
                     </div>
