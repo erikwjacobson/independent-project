@@ -1,12 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.demo')
 
 @section('content')
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <a class="btn btn-danger btn-sm" href="{{route('instructions')}}"><&nbsp;&nbsp;Exit</a>
-                <br><br>
+                <br>
                 <div class="alert alert-warning" role="alert">
                     <h3 class="text-center">! Demonstration !</h3>
                     <p>
